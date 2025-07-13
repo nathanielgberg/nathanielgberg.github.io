@@ -12,6 +12,12 @@ export default defineConfig(({ mode }) => ({
   base: mode === 'production' ? '/personalwebsite/' : '/',
   build: {
     outDir: "dist/spa",
+    emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
   },
   plugins: [react(), expressPlugin()],
   resolve: {
