@@ -35,6 +35,8 @@ export default function Index() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="text-xl font-bold text-primary">Portfolio</div>
+
+            {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
               <button
                 onClick={() => scrollToSection("about")}
@@ -67,7 +69,57 @@ export default function Index() {
                 Contact
               </button>
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden text-foreground"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </button>
           </div>
+
+          {/* Mobile Navigation */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-md border-b border-border">
+              <div className="container mx-auto px-6 py-4 space-y-4">
+                <button
+                  onClick={() => scrollToSection("about")}
+                  className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors py-2"
+                >
+                  About
+                </button>
+                <button
+                  onClick={() => scrollToSection("experience")}
+                  className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors py-2"
+                >
+                  Experience
+                </button>
+                <button
+                  onClick={() => scrollToSection("skills")}
+                  className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors py-2"
+                >
+                  Skills
+                </button>
+                <button
+                  onClick={() => scrollToSection("projects")}
+                  className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors py-2"
+                >
+                  Projects
+                </button>
+                <button
+                  onClick={() => scrollToSection("contact")}
+                  className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors py-2"
+                >
+                  Contact
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
