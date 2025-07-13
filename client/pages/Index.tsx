@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   ArrowDown,
   Mail,
@@ -18,10 +18,46 @@ import {
   Star,
   Menu,
   X,
+  Brain,
+  Rocket,
+  Zap,
+  Trophy,
+  Users,
+  Target,
+  Cpu,
+  Database,
+  Smartphone,
+  Bot,
+  ChevronRight,
 } from "lucide-react";
 
 export default function Index() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [typedText, setTypedText] = useState("");
+  const [currentRole, setCurrentRole] = useState(0);
+
+  const roles = [
+    "Co-Founder & CTO",
+    "UX Researcher",
+    "Full-Stack Engineer",
+    "BattleBots Champion",
+  ];
+
+  useEffect(() => {
+    const roleText = roles[currentRole];
+    let index = 0;
+    const timer = setInterval(() => {
+      setTypedText(roleText.slice(0, index));
+      index++;
+      if (index > roleText.length) {
+        setTimeout(() => {
+          setCurrentRole((prev) => (prev + 1) % roles.length);
+        }, 2000);
+        clearInterval(timer);
+      }
+    }, 100);
+    return () => clearInterval(timer);
+  }, [currentRole]);
 
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
@@ -29,45 +65,36 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="fixed inset-0 bg-hero-gradient">
+        <div className="absolute inset-0 bg-cyber-grid bg-[size:50px_50px] opacity-20"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse-glow"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-green-500/20 rounded-full blur-3xl animate-float"></div>
+      </div>
+
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-border z-50">
+      <nav className="fixed top-0 w-full bg-background/10 backdrop-blur-xl border-b border-border/20 z-50">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="text-xl font-bold text-primary">Portfolio</div>
+            <div className="text-xl font-bold text-primary animate-glow">
+              &lt;NG /&gt;
+            </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              <button
-                onClick={() => scrollToSection("about")}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                About
-              </button>
-              <button
-                onClick={() => scrollToSection("experience")}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Experience
-              </button>
-              <button
-                onClick={() => scrollToSection("skills")}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Skills
-              </button>
-              <button
-                onClick={() => scrollToSection("projects")}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Projects
-              </button>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Contact
-              </button>
+              {["about", "experience", "skills", "projects", "contact"].map(
+                (section) => (
+                  <button
+                    key={section}
+                    onClick={() => scrollToSection(section)}
+                    className="text-muted-foreground hover:text-primary transition-all duration-300 hover:glow capitalize relative group"
+                  >
+                    {section}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                  </button>
+                ),
+              )}
             </div>
 
             {/* Mobile Menu Button */}
@@ -85,38 +112,19 @@ export default function Index() {
 
           {/* Mobile Navigation */}
           {isMobileMenuOpen && (
-            <div className="md:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-md border-b border-border">
+            <div className="md:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-md border-b border-border/20 animate-slide-up">
               <div className="container mx-auto px-6 py-4 space-y-4">
-                <button
-                  onClick={() => scrollToSection("about")}
-                  className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors py-2"
-                >
-                  About
-                </button>
-                <button
-                  onClick={() => scrollToSection("experience")}
-                  className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors py-2"
-                >
-                  Experience
-                </button>
-                <button
-                  onClick={() => scrollToSection("skills")}
-                  className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors py-2"
-                >
-                  Skills
-                </button>
-                <button
-                  onClick={() => scrollToSection("projects")}
-                  className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors py-2"
-                >
-                  Projects
-                </button>
-                <button
-                  onClick={() => scrollToSection("contact")}
-                  className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors py-2"
-                >
-                  Contact
-                </button>
+                {["about", "experience", "skills", "projects", "contact"].map(
+                  (section) => (
+                    <button
+                      key={section}
+                      onClick={() => scrollToSection(section)}
+                      className="block w-full text-left text-muted-foreground hover:text-primary transition-colors py-2 capitalize"
+                    >
+                      {section}
+                    </button>
+                  ),
+                )}
               </div>
             </div>
           )}
@@ -124,24 +132,30 @@ export default function Index() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-20 pb-16 px-6">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-                  Hi, I'm{" "}
-                  <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-                    Alex Johnson
+      <section className="relative pt-20 pb-16 px-6 min-h-screen flex items-center">
+        <div className="container mx-auto max-w-7xl relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8 animate-fade-in">
+              <div className="space-y-6">
+                <div className="text-sm text-primary font-mono animate-slide-up">
+                  &gt; Hello World, I'm
+                </div>
+                <h1 className="text-6xl lg:text-8xl font-bold leading-tight">
+                  <span className="bg-gradient-to-r from-primary via-green-400 to-blue-400 bg-clip-text text-transparent">
+                    Nathaniel
                   </span>
+                  <br />
+                  <span className="text-foreground">Greenberg</span>
                 </h1>
-                <p className="text-2xl lg:text-3xl text-muted-foreground font-light">
-                  Full-Stack Developer & UI/UX Designer
-                </p>
-                <p className="text-lg text-muted-foreground max-w-lg leading-relaxed">
-                  I create beautiful, functional, and user-centered digital
-                  experiences that solve real-world problems with clean code and
-                  thoughtful design.
+                <div className="text-2xl lg:text-4xl text-muted-foreground font-light h-16">
+                  <span className="font-mono">{typedText}</span>
+                  <span className="animate-pulse">|</span>
+                </div>
+                <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
+                  Computer Engineering graduate student at UC San Diego with a
+                  passion for building revolutionary products. From leading
+                  championship robotics teams to architecting full-stack
+                  applications, I turn complex problems into elegant solutions.
                 </p>
               </div>
 
@@ -149,68 +163,99 @@ export default function Index() {
                 <Button
                   size="lg"
                   onClick={() => scrollToSection("projects")}
-                  className="text-lg px-8 py-6"
+                  className="text-lg px-8 py-6 bg-primary hover:bg-primary/80 animate-pulse-glow"
                 >
+                  <Rocket className="mr-2 h-5 w-5" />
                   View My Work
                 </Button>
                 <Button
                   variant="outline"
                   size="lg"
                   onClick={() => scrollToSection("contact")}
-                  className="text-lg px-8 py-6"
+                  className="text-lg px-8 py-6 border-primary/50 hover:border-primary"
                 >
+                  <Mail className="mr-2 h-5 w-5" />
                   Get In Touch
                 </Button>
               </div>
 
               <div className="flex space-x-6">
                 <a
-                  href="mailto:alex@example.com"
-                  className="text-muted-foreground hover:text-primary transition-colors"
+                  href="mailto:ngreenberg@ucsd.edu"
+                  className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
                 >
                   <Mail className="h-6 w-6" />
                 </a>
                 <a
-                  href="https://github.com"
-                  className="text-muted-foreground hover:text-primary transition-colors"
+                  href="https://github.com/nathanielgberg"
+                  className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
                 >
                   <Github className="h-6 w-6" />
                 </a>
                 <a
-                  href="https://linkedin.com"
-                  className="text-muted-foreground hover:text-primary transition-colors"
+                  href="https://linkedin.com/in/nathanielgreenberg"
+                  className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
                 >
                   <Linkedin className="h-6 w-6" />
                 </a>
               </div>
             </div>
 
-            <div className="relative">
-              <div className="relative w-full max-w-md mx-auto">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-blue-600/20 rounded-full blur-3xl"></div>
-                <div className="relative bg-card rounded-2xl p-8 border border-border shadow-xl">
-                  <div className="w-48 h-48 mx-auto bg-gradient-to-br from-primary to-blue-600 rounded-full mb-6 flex items-center justify-center">
-                    <span className="text-6xl font-bold text-white">AJ</span>
-                  </div>
-                  <div className="text-center space-y-2">
-                    <div className="flex items-center justify-center space-x-2 text-muted-foreground">
-                      <MapPin className="h-4 w-4" />
-                      <span>San Francisco, CA</span>
+            <div className="relative animate-float">
+              <div className="relative w-full max-w-lg mx-auto">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-green-400/30 rounded-3xl blur-3xl animate-pulse-glow"></div>
+                <Card className="relative bg-card/50 backdrop-blur-xl border-primary/20 shadow-2xl">
+                  <CardContent className="p-8">
+                    <div className="text-center space-y-6">
+                      <div className="w-32 h-32 mx-auto bg-gradient-to-br from-primary to-green-400 rounded-full flex items-center justify-center text-4xl font-bold text-white relative overflow-hidden">
+                        <span className="relative z-10">NG</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 animate-gradient-xy"></div>
+                      </div>
+
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-center space-x-2 text-muted-foreground">
+                          <MapPin className="h-4 w-4 text-primary" />
+                          <span>San Diego, CA</span>
+                        </div>
+                        <div className="flex items-center justify-center space-x-2 text-muted-foreground">
+                          <GraduationCap className="h-4 w-4 text-primary" />
+                          <span>UC San Diego</span>
+                        </div>
+                        <div className="flex items-center justify-center space-x-2 text-muted-foreground">
+                          <Trophy className="h-4 w-4 text-primary" />
+                          <span>BattleBots Champion</span>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-4 pt-4">
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-primary">
+                            4.0
+                          </div>
+                          <div className="text-sm text-muted-foreground">
+                            Masters GPA
+                          </div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-primary">
+                            #2
+                          </div>
+                          <div className="text-sm text-muted-foreground">
+                            Global Rank
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex items-center justify-center space-x-2 text-muted-foreground">
-                      <Award className="h-4 w-4" />
-                      <span>5+ Years Experience</span>
-                    </div>
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </div>
 
-          <div className="flex justify-center mt-16">
+          <div className="flex justify-center mt-16 animate-bounce">
             <button
               onClick={() => scrollToSection("about")}
-              className="animate-bounce text-muted-foreground hover:text-primary transition-colors"
+              className="text-muted-foreground hover:text-primary transition-colors"
             >
               <ArrowDown className="h-6 w-6" />
             </button>
@@ -219,78 +264,102 @@ export default function Index() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-6 bg-muted/20">
+      <section
+        id="about"
+        className="py-20 px-6 bg-background/50 backdrop-blur-sm relative"
+      >
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">About Me</h2>
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-green-400 bg-clip-text text-transparent">
+              About Me
+            </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              I'm a passionate developer with a love for creating exceptional
-              digital experiences
+              Engineering innovative solutions that bridge the gap between
+              cutting-edge technology and real-world impact
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
+            <div className="space-y-6 animate-slide-up">
               <p className="text-lg leading-relaxed">
-                With over 5 years of experience in full-stack development, I
-                specialize in building scalable web applications using modern
-                technologies like React, Node.js, and TypeScript.
+                Currently pursuing my Master's in Computer Engineering at UC San
+                Diego with a perfect 4.0 GPA, I'm passionate about creating
+                technology that makes a meaningful difference. As Co-Founder and
+                CTO of SkillTree, I've led a 12-person team to build a
+                revolutionary workout app with real-time pose detection.
               </p>
               <p className="text-lg leading-relaxed">
-                I believe in writing clean, maintainable code and creating
-                intuitive user interfaces that provide exceptional user
-                experiences. My background in both development and design allows
-                me to bridge the gap between technical implementation and
-                user-centered design.
+                My journey includes groundbreaking work in explainable AI at UC
+                San Diego's MINDS Lab, where I analyze user interaction data to
+                improve AI-driven recommendations and study algorithmic
+                fairness. But perhaps most uniquely, I'm a BattleBots champion -
+                leading Team Riptide to become 2021 Rookie of the Year and
+                achieving a #2 global ranking in 2022.
               </p>
+
               <div className="grid grid-cols-2 gap-6 pt-6">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary">50+</div>
-                  <div className="text-muted-foreground">
-                    Projects Completed
-                  </div>
+                <div className="text-center p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-primary/20">
+                  <div className="text-3xl font-bold text-primary">40+</div>
+                  <div className="text-muted-foreground">User Interviews</div>
                 </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary">25+</div>
-                  <div className="text-muted-foreground">Happy Clients</div>
+                <div className="text-center p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-primary/20">
+                  <div className="text-3xl font-bold text-primary">$40K+</div>
+                  <div className="text-muted-foreground">Funding Raised</div>
                 </div>
               </div>
             </div>
 
-            <div className="space-y-4">
-              <Card>
+            <div className="space-y-6 animate-fade-in">
+              <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-start space-x-4">
-                    <div className="bg-primary/10 p-3 rounded-lg">
+                    <div className="bg-primary/20 p-3 rounded-lg">
                       <GraduationCap className="h-6 w-6 text-primary" />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h3 className="font-semibold mb-2">Education</h3>
-                      <p className="text-muted-foreground">
-                        B.S. Computer Science
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        Stanford University, 2019
-                      </p>
+                      <div className="space-y-2">
+                        <div>
+                          <p className="text-foreground font-medium">
+                            M.S. Computer Engineering
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            UC San Diego • GPA: 4.0/4.0 • 2024-2025
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-foreground font-medium">
+                            B.S. Computer Engineering
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            UC San Diego • GPA: 3.4/4.0 • 2020-2024
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            Double Minor: Finance & Business
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-start space-x-4">
-                    <div className="bg-primary/10 p-3 rounded-lg">
-                      <Award className="h-6 w-6 text-primary" />
+                    <div className="bg-primary/20 p-3 rounded-lg">
+                      <Trophy className="h-6 w-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-2">Certifications</h3>
-                      <p className="text-muted-foreground">
-                        AWS Solutions Architect
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        Google Cloud Professional
-                      </p>
+                      <h3 className="font-semibold mb-2">
+                        Notable Achievements
+                      </h3>
+                      <div className="space-y-1 text-sm text-muted-foreground">
+                        <p>• 2021 BattleBots Rookie of the Year</p>
+                        <p>• #2 Global Ranking BattleBots 2022</p>
+                        <p>• 2020 California VEX State Champion</p>
+                        <p>• First-author paper accepted at FAccT</p>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
@@ -301,99 +370,238 @@ export default function Index() {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-20 px-6">
+      <section id="experience" className="py-20 px-6 relative">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Professional Experience</h2>
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-green-400 bg-clip-text text-transparent">
+              Professional Experience
+            </h2>
             <p className="text-xl text-muted-foreground">
-              My journey through the tech industry
+              Building the future through technology and leadership
             </p>
           </div>
 
           <div className="space-y-8">
-            <Card>
+            {/* SkillTree */}
+            <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] animate-slide-up group">
               <CardContent className="p-8">
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                  <div>
-                    <h3 className="text-2xl font-semibold">
-                      Senior Full-Stack Developer
-                    </h3>
-                    <p className="text-primary font-medium">TechCorp Inc.</p>
+                <div className="flex flex-col md:flex-row md:items-start justify-between mb-6">
+                  <div className="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div className="bg-primary/20 p-3 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                      <Rocket className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-semibold">
+                        Co-Founder | CTO | Lead Engineer
+                      </h3>
+                      <p className="text-primary font-medium">SkillTree</p>
+                    </div>
                   </div>
                   <div className="flex items-center space-x-2 text-muted-foreground">
                     <Calendar className="h-4 w-4" />
-                    <span>2022 - Present</span>
+                    <span>January 2025 - Present</span>
                   </div>
                 </div>
-                <p className="text-muted-foreground mb-4">
-                  Led development of multiple high-impact web applications
-                  serving 100k+ users. Architected scalable solutions using
-                  React, Node.js, and AWS infrastructure.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">React</Badge>
-                  <Badge variant="secondary">TypeScript</Badge>
-                  <Badge variant="secondary">Node.js</Badge>
-                  <Badge variant="secondary">AWS</Badge>
-                  <Badge variant="secondary">PostgreSQL</Badge>
+                <div className="space-y-4">
+                  <p className="text-muted-foreground leading-relaxed">
+                    Leading a 12-person cross-functional team to build
+                    SkillTree, a revolutionary workout app with real-time pose
+                    detection, funded by Blackstone LaunchPad.
+                  </p>
+                  <div className="grid md:grid-cols-2 gap-4 text-sm text-muted-foreground">
+                    <div className="flex items-start space-x-2">
+                      <ChevronRight className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <span>
+                        Architected full-stack app using React Native,
+                        TypeScript, AWS Amplify, and DynamoDB
+                      </span>
+                    </div>
+                    <div className="flex items-start space-x-2">
+                      <ChevronRight className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <span>
+                        Facilitated 40+ user interviews driving 45% feature
+                        improvement
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/20 text-primary border-primary/30"
+                  >
+                    React Native
+                  </Badge>
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/20 text-primary border-primary/30"
+                  >
+                    TypeScript
+                  </Badge>
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/20 text-primary border-primary/30"
+                  >
+                    AWS Amplify
+                  </Badge>
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/20 text-primary border-primary/30"
+                  >
+                    DynamoDB
+                  </Badge>
                 </div>
               </CardContent>
             </Card>
 
-            <Card>
+            {/* UC San Diego MINDS Lab */}
+            <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] animate-slide-up group">
               <CardContent className="p-8">
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                  <div>
-                    <h3 className="text-2xl font-semibold">
-                      Frontend Developer
-                    </h3>
-                    <p className="text-primary font-medium">StartupXYZ</p>
+                <div className="flex flex-col md:flex-row md:items-start justify-between mb-6">
+                  <div className="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div className="bg-primary/20 p-3 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                      <Brain className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-semibold">
+                        UX Researcher (Explainable AI)
+                      </h3>
+                      <p className="text-primary font-medium">
+                        UC San Diego MINDS Lab
+                      </p>
+                    </div>
                   </div>
                   <div className="flex items-center space-x-2 text-muted-foreground">
                     <Calendar className="h-4 w-4" />
-                    <span>2020 - 2022</span>
+                    <span>March 2025 - Present</span>
                   </div>
                 </div>
-                <p className="text-muted-foreground mb-4">
-                  Built responsive web applications and improved user experience
-                  metrics by 40%. Collaborated with design team to implement
-                  pixel-perfect UI components.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">React</Badge>
-                  <Badge variant="secondary">JavaScript</Badge>
-                  <Badge variant="secondary">CSS3</Badge>
-                  <Badge variant="secondary">Redux</Badge>
-                  <Badge variant="secondary">Figma</Badge>
+                <div className="space-y-4">
+                  <p className="text-muted-foreground leading-relaxed">
+                    Conducting cutting-edge research in explainable AI,
+                    analyzing user interaction patterns to improve AI-driven
+                    recommendations and studying algorithmic fairness.
+                  </p>
+                  <div className="grid md:grid-cols-2 gap-4 text-sm text-muted-foreground">
+                    <div className="flex items-start space-x-2">
+                      <ChevronRight className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <span>
+                        Analyzed interaction data from 100+ users to find
+                        behavioral patterns
+                      </span>
+                    </div>
+                    <div className="flex items-start space-x-2">
+                      <ChevronRight className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <span>
+                        First-author paper accepted at FAccT on algorithmic
+                        fairness and trust
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/20 text-primary border-primary/30"
+                  >
+                    Python
+                  </Badge>
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/20 text-primary border-primary/30"
+                  >
+                    Machine Learning
+                  </Badge>
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/20 text-primary border-primary/30"
+                  >
+                    UX Research
+                  </Badge>
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/20 text-primary border-primary/30"
+                  >
+                    Data Analysis
+                  </Badge>
                 </div>
               </CardContent>
             </Card>
 
-            <Card>
+            {/* BattleBots */}
+            <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] animate-slide-up group">
               <CardContent className="p-8">
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                  <div>
-                    <h3 className="text-2xl font-semibold">Junior Developer</h3>
-                    <p className="text-primary font-medium">
-                      WebSolutions Ltd.
-                    </p>
+                <div className="flex flex-col md:flex-row md:items-start justify-between mb-6">
+                  <div className="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div className="bg-primary/20 p-3 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                      <Bot className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-semibold">
+                        Assembly and Design Lead
+                      </h3>
+                      <p className="text-primary font-medium">
+                        BattleBots Team Riptide
+                      </p>
+                    </div>
                   </div>
                   <div className="flex items-center space-x-2 text-muted-foreground">
                     <Calendar className="h-4 w-4" />
-                    <span>2019 - 2020</span>
+                    <span>March 2020 - December 2023</span>
                   </div>
                 </div>
-                <p className="text-muted-foreground mb-4">
-                  Developed and maintained client websites using modern web
-                  technologies. Gained experience in full-stack development and
-                  agile methodologies.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">HTML5</Badge>
-                  <Badge variant="secondary">CSS3</Badge>
-                  <Badge variant="secondary">JavaScript</Badge>
-                  <Badge variant="secondary">PHP</Badge>
-                  <Badge variant="secondary">MySQL</Badge>
+                <div className="space-y-4">
+                  <p className="text-muted-foreground leading-relaxed">
+                    Led a 7-person team in designing and building
+                    championship-winning 250lb combat robots, achieving
+                    international recognition and TV fame.
+                  </p>
+                  <div className="grid md:grid-cols-2 gap-4 text-sm text-muted-foreground">
+                    <div className="flex items-start space-x-2">
+                      <ChevronRight className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <span>2021 BattleBots Rookie of the Year</span>
+                    </div>
+                    <div className="flex items-start space-x-2">
+                      <ChevronRight className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <span>Ranked #2 globally in 2022</span>
+                    </div>
+                    <div className="flex items-start space-x-2">
+                      <ChevronRight className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <span>
+                        Raised $40K+ through sponsorships and crowdfunding
+                      </span>
+                    </div>
+                    <div className="flex items-start space-x-2">
+                      <ChevronRight className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <span>Featured on nationally televised matches</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/20 text-primary border-primary/30"
+                  >
+                    Mechanical Design
+                  </Badge>
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/20 text-primary border-primary/30"
+                  >
+                    Team Leadership
+                  </Badge>
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/20 text-primary border-primary/30"
+                  >
+                    Fundraising
+                  </Badge>
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/20 text-primary border-primary/30"
+                  >
+                    C++
+                  </Badge>
                 </div>
               </CardContent>
             </Card>
@@ -402,159 +610,159 @@ export default function Index() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 px-6 bg-muted/20">
+      <section
+        id="skills"
+        className="py-20 px-6 bg-background/50 backdrop-blur-sm relative"
+      >
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Skills & Technologies</h2>
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-green-400 bg-clip-text text-transparent">
+              Technical Arsenal
+            </h2>
             <p className="text-xl text-muted-foreground">
-              Technologies I work with on a daily basis
+              Technologies and tools I use to build the future
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card>
+            {/* Programming Languages */}
+            <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:scale-105 animate-fade-in group">
               <CardContent className="p-6">
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="bg-primary/10 p-3 rounded-lg">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="bg-primary/20 p-3 rounded-lg group-hover:animate-spin-slow">
                     <Code className="h-6 w-6 text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold">Frontend</h3>
+                  <h3 className="text-xl font-semibold">Languages</h3>
                 </div>
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span>React/Next.js</span>
-                    <div className="flex space-x-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="h-4 w-4 fill-primary text-primary"
-                        />
-                      ))}
+                <div className="space-y-4">
+                  {[
+                    { name: "Python", level: 5 },
+                    { name: "TypeScript", level: 5 },
+                    { name: "JavaScript", level: 5 },
+                    { name: "Java", level: 4 },
+                    { name: "C/C++", level: 4 },
+                    { name: "CUDA", level: 3 },
+                  ].map((skill) => (
+                    <div key={skill.name} className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-medium">
+                          {skill.name}
+                        </span>
+                        <div className="flex space-x-1">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className={`h-3 w-3 ${
+                                i < skill.level
+                                  ? "fill-primary text-primary"
+                                  : "text-muted-foreground"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                      <div className="w-full bg-muted/20 rounded-full h-1.5">
+                        <div
+                          className="bg-primary h-1.5 rounded-full transition-all duration-1000 delay-300"
+                          style={{ width: `${(skill.level / 5) * 100}%` }}
+                        ></div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>TypeScript</span>
-                    <div className="flex space-x-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="h-4 w-4 fill-primary text-primary"
-                        />
-                      ))}
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Tailwind CSS</span>
-                    <div className="flex space-x-1">
-                      {[...Array(4)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="h-4 w-4 fill-primary text-primary"
-                        />
-                      ))}
-                      <Star className="h-4 w-4 text-muted-foreground" />
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="bg-primary/10 p-3 rounded-lg">
-                    <Briefcase className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold">Backend</h3>
-                </div>
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span>Node.js</span>
-                    <div className="flex space-x-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="h-4 w-4 fill-primary text-primary"
-                        />
-                      ))}
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>PostgreSQL</span>
-                    <div className="flex space-x-1">
-                      {[...Array(4)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="h-4 w-4 fill-primary text-primary"
-                        />
-                      ))}
-                      <Star className="h-4 w-4 text-muted-foreground" />
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Express.js</span>
-                    <div className="flex space-x-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="h-4 w-4 fill-primary text-primary"
-                        />
-                      ))}
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </CardContent>
             </Card>
 
-            <Card>
+            {/* Frameworks & Libraries */}
+            <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:scale-105 animate-fade-in group">
               <CardContent className="p-6">
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="bg-primary/10 p-3 rounded-lg">
-                    <Award className="h-6 w-6 text-primary" />
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="bg-primary/20 p-3 rounded-lg group-hover:animate-spin-slow">
+                    <Smartphone className="h-6 w-6 text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold">Tools & Others</h3>
+                  <h3 className="text-xl font-semibold">Frameworks</h3>
                 </div>
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span>AWS/Cloud</span>
-                    <div className="flex space-x-1">
-                      {[...Array(4)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="h-4 w-4 fill-primary text-primary"
-                        />
-                      ))}
-                      <Star className="h-4 w-4 text-muted-foreground" />
+                <div className="space-y-4">
+                  {[
+                    { name: "React/React Native", level: 5 },
+                    { name: "Node.js", level: 5 },
+                    { name: "PyTorch", level: 4 },
+                    { name: "TensorFlow", level: 4 },
+                    { name: "Express.js", level: 4 },
+                  ].map((skill) => (
+                    <div key={skill.name} className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-medium">
+                          {skill.name}
+                        </span>
+                        <div className="flex space-x-1">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className={`h-3 w-3 ${
+                                i < skill.level
+                                  ? "fill-primary text-primary"
+                                  : "text-muted-foreground"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                      <div className="w-full bg-muted/20 rounded-full h-1.5">
+                        <div
+                          className="bg-primary h-1.5 rounded-full transition-all duration-1000 delay-500"
+                          style={{ width: `${(skill.level / 5) * 100}%` }}
+                        ></div>
+                      </div>
                     </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Tools & Platforms */}
+            <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:scale-105 animate-fade-in group">
+              <CardContent className="p-6">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="bg-primary/20 p-3 rounded-lg group-hover:animate-spin-slow">
+                    <Database className="h-6 w-6 text-primary" />
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span>Git/GitHub</span>
-                    <div className="flex space-x-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="h-4 w-4 fill-primary text-primary"
-                        />
-                      ))}
+                  <h3 className="text-xl font-semibold">Tools & Cloud</h3>
+                </div>
+                <div className="space-y-4">
+                  {[
+                    { name: "AWS Amplify", level: 5 },
+                    { name: "Git/GitHub", level: 5 },
+                    { name: "DynamoDB", level: 4 },
+                    { name: "Figma", level: 4 },
+                    { name: "Expo/EAS CLI", level: 4 },
+                  ].map((skill) => (
+                    <div key={skill.name} className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-medium">
+                          {skill.name}
+                        </span>
+                        <div className="flex space-x-1">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className={`h-3 w-3 ${
+                                i < skill.level
+                                  ? "fill-primary text-primary"
+                                  : "text-muted-foreground"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                      <div className="w-full bg-muted/20 rounded-full h-1.5">
+                        <div
+                          className="bg-primary h-1.5 rounded-full transition-all duration-1000 delay-700"
+                          style={{ width: `${(skill.level / 5) * 100}%` }}
+                        ></div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Docker</span>
-                    <div className="flex space-x-1">
-                      {[...Array(3)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="h-4 w-4 fill-primary text-primary"
-                        />
-                      ))}
-                      {[...Array(2)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="h-4 w-4 text-muted-foreground"
-                        />
-                      ))}
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </CardContent>
             </Card>
@@ -563,22 +771,29 @@ export default function Index() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-6">
+      <section id="projects" className="py-20 px-6 relative">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-green-400 bg-clip-text text-transparent">
+              Featured Projects
+            </h2>
             <p className="text-xl text-muted-foreground">
-              Some of my recent work that I'm proud of
+              Innovative solutions that push the boundaries of technology
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="group overflow-hidden">
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* SkillTree App */}
+            <Card className="group overflow-hidden bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] animate-slide-up">
               <CardContent className="p-0">
-                <div className="aspect-video bg-gradient-to-br from-primary/20 to-blue-600/20 relative overflow-hidden">
+                <div className="aspect-video bg-gradient-to-br from-primary/30 to-green-400/30 relative overflow-hidden">
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="flex space-x-4">
-                      <Button size="sm" variant="secondary">
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        className="animate-pulse-glow"
+                      >
                         <ExternalLink className="h-4 w-4 mr-2" />
                         Live Demo
                       </Button>
@@ -588,39 +803,67 @@ export default function Index() {
                       </Button>
                     </div>
                   </div>
-                  <div className="p-6 h-full flex items-center justify-center">
+                  <div className="p-8 h-full flex items-center justify-center">
                     <div className="text-center">
-                      <div className="w-16 h-16 bg-primary rounded-lg mx-auto mb-4 flex items-center justify-center">
-                        <Code className="h-8 w-8 text-white" />
+                      <div className="w-20 h-20 bg-primary rounded-xl mx-auto mb-4 flex items-center justify-center animate-float">
+                        <Smartphone className="h-10 w-10 text-white" />
                       </div>
-                      <h4 className="text-lg font-semibold text-foreground">
-                        E-Commerce Platform
+                      <h4 className="text-2xl font-semibold text-foreground">
+                        SkillTree
                       </h4>
+                      <p className="text-primary font-medium">Workout App</p>
                     </div>
                   </div>
                 </div>
                 <div className="p-6">
                   <p className="text-muted-foreground mb-4">
-                    Full-stack e-commerce solution with React, Node.js, and
-                    Stripe integration.
+                    Revolutionary workout app with real-time pose detection
+                    using React Native, TypeScript, and AWS. Led 12-person team
+                    to secure Blackstone LaunchPad funding.
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">React</Badge>
-                    <Badge variant="secondary">Node.js</Badge>
-                    <Badge variant="secondary">Stripe</Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      React Native
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      TypeScript
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      AWS
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      ML/AI
+                    </Badge>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="group overflow-hidden">
+            {/* CUDA DCGAN Optimizer */}
+            <Card className="group overflow-hidden bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] animate-slide-up">
               <CardContent className="p-0">
-                <div className="aspect-video bg-gradient-to-br from-green-400/20 to-blue-500/20 relative overflow-hidden">
+                <div className="aspect-video bg-gradient-to-br from-purple-400/30 to-blue-500/30 relative overflow-hidden">
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="flex space-x-4">
-                      <Button size="sm" variant="secondary">
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        className="animate-pulse-glow"
+                      >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        Live Demo
+                        Demo
                       </Button>
                       <Button size="sm" variant="outline">
                         <Github className="h-4 w-4 mr-2" />
@@ -628,66 +871,49 @@ export default function Index() {
                       </Button>
                     </div>
                   </div>
-                  <div className="p-6 h-full flex items-center justify-center">
+                  <div className="p-8 h-full flex items-center justify-center">
                     <div className="text-center">
-                      <div className="w-16 h-16 bg-green-500 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                        <Award className="h-8 w-8 text-white" />
+                      <div className="w-20 h-20 bg-purple-500 rounded-xl mx-auto mb-4 flex items-center justify-center animate-float">
+                        <Cpu className="h-10 w-10 text-white" />
                       </div>
-                      <h4 className="text-lg font-semibold text-foreground">
-                        Task Management App
+                      <h4 className="text-2xl font-semibold text-foreground">
+                        CUDA DCGAN Optimizer
                       </h4>
+                      <p className="text-primary font-medium">GPU Computing</p>
                     </div>
                   </div>
                 </div>
                 <div className="p-6">
                   <p className="text-muted-foreground mb-4">
-                    Collaborative task management with real-time updates and
-                    team features.
+                    Developed low-level CUDA kernels for a Python-based DCGAN
+                    pipeline, achieving 34x faster training through memory
+                    coalescing and shared memory techniques.
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">Next.js</Badge>
-                    <Badge variant="secondary">Socket.io</Badge>
-                    <Badge variant="secondary">PostgreSQL</Badge>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="group overflow-hidden">
-              <CardContent className="p-0">
-                <div className="aspect-video bg-gradient-to-br from-purple-400/20 to-pink-500/20 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="flex space-x-4">
-                      <Button size="sm" variant="secondary">
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        Live Demo
-                      </Button>
-                      <Button size="sm" variant="outline">
-                        <Github className="h-4 w-4 mr-2" />
-                        Code
-                      </Button>
-                    </div>
-                  </div>
-                  <div className="p-6 h-full flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-purple-500 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                        <Star className="h-8 w-8 text-white" />
-                      </div>
-                      <h4 className="text-lg font-semibold text-foreground">
-                        Weather Dashboard
-                      </h4>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <p className="text-muted-foreground mb-4">
-                    Beautiful weather app with location-based forecasts and
-                    interactive maps.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">React</Badge>
-                    <Badge variant="secondary">API Integration</Badge>
-                    <Badge variant="secondary">Charts</Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      Python
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      CUDA
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      PyTorch
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      GPU Computing
+                    </Badge>
                   </div>
                 </div>
               </CardContent>
@@ -697,86 +923,91 @@ export default function Index() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-6 bg-muted/20">
+      <section
+        id="contact"
+        className="py-20 px-6 bg-background/50 backdrop-blur-sm relative"
+      >
         <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Let's Work Together</h2>
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-green-400 bg-clip-text text-transparent">
+              Let's Build Something Amazing
+            </h2>
             <p className="text-xl text-muted-foreground">
-              Ready to bring your next project to life? Let's talk!
+              Ready to collaborate on the next big thing? Let's connect!
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
-            <div className="space-y-8">
+            <div className="space-y-8 animate-slide-up">
               <div>
                 <h3 className="text-2xl font-semibold mb-6">Get in touch</h3>
-                <p className="text-muted-foreground mb-8">
-                  I'm always interested in hearing about new projects and
-                  opportunities. Whether you're a company looking to hire, or
-                  you're someone looking to build something awesome, I'd love to
-                  hear from you.
+                <p className="text-muted-foreground mb-8 leading-relaxed">
+                  Whether you're looking for a co-founder, a technical leader,
+                  or someone who can bridge the gap between engineering
+                  excellence and business impact, I'd love to hear about your
+                  vision.
                 </p>
               </div>
 
-              <div className="space-y-4">
-                <div className="flex items-center space-x-4">
-                  <div className="bg-primary/10 p-3 rounded-lg">
+              <div className="space-y-6">
+                <div className="flex items-center space-x-4 group">
+                  <div className="bg-primary/20 p-3 rounded-lg group-hover:scale-110 transition-transform duration-300">
                     <Mail className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <p className="font-medium">Email</p>
                     <a
-                      href="mailto:alex@example.com"
-                      className="text-primary hover:underline"
+                      href="mailto:ngreenberg@ucsd.edu"
+                      className="text-primary hover:underline transition-colors"
                     >
-                      alex@example.com
+                      ngreenberg@ucsd.edu
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-4">
-                  <div className="bg-primary/10 p-3 rounded-lg">
+                <div className="flex items-center space-x-4 group">
+                  <div className="bg-primary/20 p-3 rounded-lg group-hover:scale-110 transition-transform duration-300">
                     <Phone className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <p className="font-medium">Phone</p>
                     <a
-                      href="tel:+1234567890"
-                      className="text-primary hover:underline"
+                      href="tel:+18184241205"
+                      className="text-primary hover:underline transition-colors"
                     >
-                      +1 (234) 567-890
+                      (818) 424-1205
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-4">
-                  <div className="bg-primary/10 p-3 rounded-lg">
+                <div className="flex items-center space-x-4 group">
+                  <div className="bg-primary/20 p-3 rounded-lg group-hover:scale-110 transition-transform duration-300">
                     <MapPin className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <p className="font-medium">Location</p>
-                    <p className="text-muted-foreground">San Francisco, CA</p>
+                    <p className="text-muted-foreground">San Diego, CA</p>
                   </div>
                 </div>
               </div>
 
-              <div className="flex space-x-4 pt-4">
+              <div className="flex space-x-4 pt-6">
                 <a
-                  href="https://github.com"
-                  className="bg-primary/10 p-3 rounded-lg text-primary hover:bg-primary hover:text-white transition-colors"
+                  href="https://github.com/nathanielgberg"
+                  className="bg-primary/20 p-3 rounded-lg text-primary hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110"
                 >
                   <Github className="h-5 w-5" />
                 </a>
                 <a
-                  href="https://linkedin.com"
-                  className="bg-primary/10 p-3 rounded-lg text-primary hover:bg-primary hover:text-white transition-colors"
+                  href="https://linkedin.com/in/nathanielgreenberg"
+                  className="bg-primary/20 p-3 rounded-lg text-primary hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110"
                 >
                   <Linkedin className="h-5 w-5" />
                 </a>
               </div>
             </div>
 
-            <Card>
+            <Card className="bg-card/50 backdrop-blur-sm border-primary/20 animate-fade-in">
               <CardContent className="p-8">
                 <form className="space-y-6">
                   <div>
@@ -785,7 +1016,7 @@ export default function Index() {
                     </label>
                     <input
                       type="text"
-                      className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                      className="w-full px-4 py-3 bg-background/50 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 backdrop-blur-sm"
                       placeholder="Your name"
                     />
                   </div>
@@ -795,7 +1026,7 @@ export default function Index() {
                     </label>
                     <input
                       type="email"
-                      className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                      className="w-full px-4 py-3 bg-background/50 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 backdrop-blur-sm"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -805,11 +1036,12 @@ export default function Index() {
                     </label>
                     <textarea
                       rows={5}
-                      className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors resize-none"
+                      className="w-full px-4 py-3 bg-background/50 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 resize-none backdrop-blur-sm"
                       placeholder="Tell me about your project..."
                     />
                   </div>
-                  <Button className="w-full" size="lg">
+                  <Button className="w-full animate-pulse-glow" size="lg">
+                    <Zap className="mr-2 h-5 w-5" />
                     Send Message
                   </Button>
                 </form>
@@ -820,11 +1052,11 @@ export default function Index() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-6 border-t border-border">
+      <footer className="py-8 px-6 border-t border-border/20 bg-background/30 backdrop-blur-sm">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-muted-foreground mb-4 md:mb-0">
-              © 2024 Alex Johnson. All rights reserved.
+              © 2024 Nathaniel Greenberg. All rights reserved.
             </div>
             <div className="flex space-x-6">
               <a
