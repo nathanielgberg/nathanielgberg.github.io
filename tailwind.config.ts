@@ -13,6 +13,17 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["Inter", "system-ui", "sans-serif"],
+      },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "hero-gradient": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        "card-gradient":
+          "linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05))",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
