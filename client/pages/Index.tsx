@@ -39,7 +39,7 @@ export default function Index() {
   const roles = [
     "Co-Founder & CTO",
     "UX Researcher",
-    "Full-Stack Engineer",
+    "Nathaniel Greenberg",
     "BattleBots Champion",
   ];
 
