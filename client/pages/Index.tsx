@@ -15,6 +15,8 @@ import {
   Briefcase,
   GraduationCap,
   Star,
+  Menu,
+  X,
 } from "lucide-react";
 
 export default function Index() {
