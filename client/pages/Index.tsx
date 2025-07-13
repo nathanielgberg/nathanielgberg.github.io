@@ -20,8 +20,11 @@ import {
 } from "lucide-react";
 
 export default function Index() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    setIsMobileMenuOpen(false);
   };
 
   return (
