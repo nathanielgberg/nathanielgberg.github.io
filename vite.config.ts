@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  base: mode === 'production' ? '/personalwebsite/' : '/',
+  base: '/',
   build: {
     outDir: "dist/spa",
     emptyOutDir: true,
