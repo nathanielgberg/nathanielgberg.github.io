@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useState, useEffect } from "react";
+import { FlipCard } from "@/components/ui/flip-card";
 import {
   ArrowDown,
   Mail,
@@ -29,6 +30,7 @@ import {
   Smartphone,
   Bot,
   ChevronRight,
+  BookOpen,
 } from "lucide-react";
 
 export default function Index() {
@@ -273,10 +275,6 @@ export default function Index() {
             <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-green-400 bg-clip-text text-transparent">
               About Me
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Engineering innovative solutions that bridge the gap between
-              cutting-edge technology and real-world impact
-            </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -296,75 +294,198 @@ export default function Index() {
                 leading Team Riptide to become 2021 Rookie of the Year and
                 achieving a #2 global ranking in 2022.
               </p>
+            </div>
 
-              <div className="grid grid-cols-2 gap-6 pt-6">
-                <div className="text-center p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-primary/20">
-                  <div className="text-3xl font-bold text-primary">40+</div>
-                  <div className="text-muted-foreground">User Interviews</div>
-                </div>
-                <div className="text-center p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-primary/20">
-                  <div className="text-3xl font-bold text-primary">$40K+</div>
-                  <div className="text-muted-foreground">Funding Raised</div>
-                </div>
+            <div className="h-[500px] animate-fade-in">
+              <div className="w-full h-full">
+                <FlipCard
+                  front={
+                    <Card className="w-full h-full bg-primary text-primary-foreground backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300">
+                      <CardContent className="p-8 flex flex-col items-center justify-center h-full text-center">
+                        <div className="flex flex-col items-center space-y-4 mb-6">
+                          <div className="bg-white/20 p-3 rounded-lg">
+                            <Star className="h-6 w-6 text-white" />
+                          </div>
+                          <h3 className="text-3xl font-bold">Quick Facts</h3>
+                        </div>
+                        <div className="space-y-6">
+                          <div className="flex items-center space-x-3">
+                            <GraduationCap className="h-6 w-6 text-primary" />
+                            <span className="text-lg">Computer Engineering @ UCSD</span>
+                          </div>
+                          <div className="flex items-center space-x-3">
+                            <Code className="h-6 w-6 text-primary" />
+                            <span className="text-lg">Software Developer</span>
+                          </div>
+                          <div className="flex items-center space-x-3">
+                            <MapPin className="h-6 w-6 text-primary" />
+                            <span className="text-lg">San Diego, California</span>
+                          </div>
+                          <div className="flex items-center space-x-3">
+                            <Briefcase className="h-6 w-6 text-primary" />
+                            <span className="text-lg">Aspiring TPM/PM</span>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  }
+                  back={
+                    <Card className="w-full h-full bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300">
+                      <CardContent className="p-8 flex flex-col items-center justify-center h-full text-center">
+                        <div className="flex flex-col items-center space-y-4 mb-6">
+                          <div className="bg-primary/20 p-3 rounded-lg">
+                            <Trophy className="h-6 w-6 text-primary" />
+                          </div>
+                          <h3 className="text-3xl font-bold">Notable Achievements</h3>
+                        </div>
+                        <div className="space-y-4 text-lg">
+                          <div className="flex items-center space-x-2">
+                            <ChevronRight className="h-6 w-6 text-primary flex-shrink-0" />
+                            <span>2021 BattleBots Rookie of the Year</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <ChevronRight className="h-6 w-6 text-primary flex-shrink-0" />
+                            <span>#2 Global Ranking BattleBots 2022</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <ChevronRight className="h-6 w-6 text-primary flex-shrink-0" />
+                            <span>2020 California VEX State Champion</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <ChevronRight className="h-6 w-6 text-primary flex-shrink-0" />
+                            <span>First-author paper accepted at FAccT</span>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  }
+                />
               </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="space-y-6 animate-fade-in">
-              <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300">
-                <CardContent className="p-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-primary/20 p-3 rounded-lg">
-                      <GraduationCap className="h-6 w-6 text-primary" />
+      {/* Education Section */}
+      <section className="py-20 px-6 bg-background/50 backdrop-blur-sm relative">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-green-400 bg-clip-text text-transparent">
+              Education
+            </h2>
+            <div className="w-16 h-1 mx-auto bg-gradient-to-r from-primary to-green-400"></div>
+          </div>
+
+          <div className="flex justify-center gap-20">
+            {/* Bachelor's Degree */}
+            <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.01] animate-slide-up h-[600px] aspect-square w-[600px]">
+              <CardContent className="p-12 h-full">
+                <div className="flex flex-col items-center justify-center text-center space-y-6 h-full">
+                  <div className="w-32 h-32 flex items-center justify-center">
+                    <img 
+                      src="/ucsd logo.png" 
+                      alt="University of California, San Diego logo" 
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <h3 className="text-3xl font-bold whitespace-nowrap">University of California, San Diego</h3>
+                    <p className="text-xl text-primary">Bachelor of Science in Computer Engineering</p>
+                  </div>
+
+                  <div className="bg-primary text-primary-foreground px-6 py-2 rounded-full">
+                    Sep 2020 - June 2024
+                  </div>
+
+                  <div className="text-xl font-semibold">
+                    GPA: 3.4/4.0
+                  </div>
+
+                  <div className="flex flex-wrap justify-center gap-2">
+                    <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
+                      <BookOpen className="h-5 w-5 text-primary" />
+                      <span>Algorithms</span>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="font-semibold mb-2">Education</h3>
-                      <div className="space-y-2">
-                        <div>
-                          <p className="text-foreground font-medium">
-                            M.S. Computer Engineering
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            UC San Diego • GPA: 4.0/4.0 • 2024-2025
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-foreground font-medium">
-                            B.S. Computer Engineering
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            UC San Diego • GPA: 3.4/4.0 • 2020-2024
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            Double Minor: Finance & Business
-                          </p>
-                        </div>
-                      </div>
+                    <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
+                      <BookOpen className="h-5 w-5 text-primary" />
+                      <span>Data Structures</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
+                      <BookOpen className="h-5 w-5 text-primary" />
+                      <span>Intro to AI</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
+                      <BookOpen className="h-5 w-5 text-primary" />
+                      <span>OOP</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
+                      <BookOpen className="h-5 w-5 text-primary" />
+                      <span>UI/UX</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
+                      <BookOpen className="h-5 w-5 text-primary" />
+                      <span>Ed Tech</span>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </CardContent>
+            </Card>
 
-              <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300">
-                <CardContent className="p-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-primary/20 p-3 rounded-lg">
-                      <Trophy className="h-6 w-6 text-primary" />
+            {/* Master's Degree */}
+            <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.01] animate-slide-up h-[600px] aspect-square w-[600px]">
+              <CardContent className="p-12 h-full">
+                <div className="flex flex-col items-center justify-center text-center space-y-6 h-full">
+                  <div className="w-32 h-32 flex items-center justify-center">
+                    <img 
+                      src="/ucsd logo.png" 
+                      alt="University of California, San Diego logo" 
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <h3 className="text-3xl font-bold whitespace-nowrap">University of California, San Diego</h3>
+                    <p className="text-xl text-primary">Master of Science in Computer Engineering</p>
+                  </div>
+
+                  <div className="bg-primary text-primary-foreground px-6 py-2 rounded-full">
+                    Sep 2024 - Dec 2025
+                  </div>
+
+                  <div className="text-xl font-semibold">
+                    GPA: 4.0/4.0
+                  </div>
+
+                  <div className="flex flex-wrap justify-center gap-2">
+                    <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
+                      <BookOpen className="h-5 w-5 text-primary" />
+                      <span>Adv ML</span>
                     </div>
-                    <div>
-                      <h3 className="font-semibold mb-2">
-                        Notable Achievements
-                      </h3>
-                      <div className="space-y-1 text-sm text-muted-foreground">
-                        <p>• 2021 BattleBots Rookie of the Year</p>
-                        <p>• #2 Global Ranking BattleBots 2022</p>
-                        <p>• 2020 California VEX State Champion</p>
-                        <p>• First-author paper accepted at FAccT</p>
-                      </div>
+                    <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
+                      <BookOpen className="h-5 w-5 text-primary" />
+                      <span>Deep Learning</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
+                      <BookOpen className="h-5 w-5 text-primary" />
+                      <span>Computer Vision</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
+                      <BookOpen className="h-5 w-5 text-primary" />
+                      <span>Explainable AI</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
+                      <BookOpen className="h-5 w-5 text-primary" />
+                      <span>Research</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
+                      <BookOpen className="h-5 w-5 text-primary" />
+                      <span>Algo Fairness</span>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>

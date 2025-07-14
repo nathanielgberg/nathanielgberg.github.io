@@ -204,3 +204,38 @@
     animation: glitch 0.3s ease-in-out;
   }
 }
+
+/* Flip Card Styles */
+@layer components {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+}
+
+/* Georgia Tech logo glow effect */
+.glow-yellow {
+  text-shadow: 0 0 15px rgba(179, 163, 105, 0.7);
+  filter: drop-shadow(0 0 8px rgba(179, 163, 105, 0.5));
+  transition: all 0.3s ease;
+}
+
+.glow-yellow:hover {
+  text-shadow: 0 0 20px rgba(179, 163, 105, 0.9);
+  filter: drop-shadow(0 0 12px rgba(179, 163, 105, 0.7));
+}
