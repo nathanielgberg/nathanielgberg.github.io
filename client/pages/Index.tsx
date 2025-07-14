@@ -275,6 +275,7 @@ export default function Index() {
             <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-green-400 bg-clip-text text-transparent">
               About Me
             </h2>
+            <div className="decoration-bar mx-auto"></div>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -373,7 +374,7 @@ export default function Index() {
             <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-green-400 bg-clip-text text-transparent">
               Education
             </h2>
-            <div className="w-16 h-1 mx-auto bg-gradient-to-r from-primary to-green-400"></div>
+            <div className="decoration-bar mx-auto"></div>
           </div>
 
           <div className="flex justify-center gap-20">
