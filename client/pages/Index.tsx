@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FlipCard } from "@/components/ui/flip-card";
 import {
   ArrowDown,
@@ -31,12 +31,21 @@ import {
   Bot,
   ChevronRight,
   BookOpen,
+  Circle,
 } from "lucide-react";
 
 export default function Index() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [typedText, setTypedText] = useState("");
   const [currentRole, setCurrentRole] = useState(0);
+  const [projectsVisible, setProjectsVisible] = useState(false);
+  const [firstProjectVisible, setFirstProjectVisible] = useState(false);
+  const [secondProjectVisible, setSecondProjectVisible] = useState(false);
+  const [thirdProjectVisible, setThirdProjectVisible] = useState(false);
+  const [fourthProjectVisible, setFourthProjectVisible] = useState(false);
+  const [fifthProjectVisible, setFifthProjectVisible] = useState(false);
+  const [sixthProjectVisible, setSixthProjectVisible] = useState(false);
+  const projectsRef = useRef(null);
 
   const roles = [
     "Co-Founder & CTO",
@@ -60,6 +69,37 @@ export default function Index() {
     }, 100);
     return () => clearInterval(timer);
   }, [currentRole]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setProjectsVisible(true);
+            // Start the sequence of animations
+            setTimeout(() => setFirstProjectVisible(true), 300);
+            setTimeout(() => setSecondProjectVisible(true), 900);
+            setTimeout(() => setThirdProjectVisible(true), 1500);
+            setTimeout(() => setFourthProjectVisible(true), 2100);
+            setTimeout(() => setFifthProjectVisible(true), 2700);
+            setTimeout(() => setSixthProjectVisible(true), 3300);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (projectsRef.current) {
+      observer.observe(projectsRef.current);
+    }
+
+    return () => {
+      if (projectsRef.current) {
+        observer.unobserve(projectsRef.current);
+      }
+    };
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
@@ -207,47 +247,12 @@ export default function Index() {
               <div className="relative w-full max-w-lg mx-auto">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-green-400/30 rounded-3xl blur-3xl animate-pulse-glow"></div>
                 <Card className="relative bg-card/50 backdrop-blur-xl border-primary/20 shadow-2xl">
-                  <CardContent className="p-8">
-                    <div className="text-center space-y-6">
-                      <div className="w-32 h-32 mx-auto bg-gradient-to-br from-primary to-green-400 rounded-full flex items-center justify-center text-4xl font-bold text-white relative overflow-hidden">
-                        <span className="relative z-10">NG</span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 animate-gradient-xy"></div>
-                      </div>
-
-                      <div className="space-y-3">
-                        <div className="flex items-center justify-center space-x-2 text-muted-foreground">
-                          <MapPin className="h-4 w-4 text-primary" />
-                          <span>San Diego, CA</span>
-                        </div>
-                        <div className="flex items-center justify-center space-x-2 text-muted-foreground">
-                          <GraduationCap className="h-4 w-4 text-primary" />
-                          <span>UC San Diego</span>
-                        </div>
-                        <div className="flex items-center justify-center space-x-2 text-muted-foreground">
-                          <Trophy className="h-4 w-4 text-primary" />
-                          <span>BattleBots Champion</span>
+                                      <CardContent className="p-4">
+                      <div className="text-center">
+                        <div className="w-full h-auto mx-auto rounded-lg overflow-hidden">
+                          <img src="/pfp.png" alt="Nathaniel Greenberg" className="w-full h-auto object-cover" />
                         </div>
                       </div>
-
-                      <div className="grid grid-cols-2 gap-4 pt-4">
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-primary">
-                            4.0
-                          </div>
-                          <div className="text-sm text-muted-foreground">
-                            Masters GPA
-                          </div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-primary">
-                            #2
-                          </div>
-                          <div className="text-sm text-muted-foreground">
-                            Global Rank
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </CardContent>
                 </Card>
               </div>
@@ -341,19 +346,19 @@ export default function Index() {
                         </div>
                         <div className="space-y-4 text-lg">
                           <div className="flex items-center space-x-2">
-                            <ChevronRight className="h-6 w-6 text-primary flex-shrink-0" />
+                            <Circle className="h-6 w-6 text-primary flex-shrink-0 fill-primary" />
                             <span>2021 BattleBots Rookie of the Year</span>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <ChevronRight className="h-6 w-6 text-primary flex-shrink-0" />
+                            <Circle className="h-6 w-6 text-primary flex-shrink-0 fill-primary" />
                             <span>#2 Global Ranking BattleBots 2022</span>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <ChevronRight className="h-6 w-6 text-primary flex-shrink-0" />
+                            <Circle className="h-6 w-6 text-primary flex-shrink-0 fill-primary" />
                             <span>2020 California VEX State Champion</span>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <ChevronRight className="h-6 w-6 text-primary flex-shrink-0" />
+                            <Circle className="h-6 w-6 text-primary flex-shrink-0 fill-primary" />
                             <span>First-author paper accepted at FAccT</span>
                           </div>
                         </div>
@@ -406,27 +411,27 @@ export default function Index() {
                   <div className="flex flex-wrap justify-center gap-2">
                     <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
                       <BookOpen className="h-5 w-5 text-primary" />
-                      <span>Algorithms</span>
+                      <span>Software Engineering</span>
                     </div>
                     <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
                       <BookOpen className="h-5 w-5 text-primary" />
-                      <span>Data Structures</span>
+                      <span>Adv Data Structures</span>
                     </div>
                     <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
                       <BookOpen className="h-5 w-5 text-primary" />
-                      <span>Intro to AI</span>
+                      <span>Computer Architecture</span>
                     </div>
                     <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
                       <BookOpen className="h-5 w-5 text-primary" />
-                      <span>OOP</span>
+                      <span>Database Systems</span>
                     </div>
                     <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
                       <BookOpen className="h-5 w-5 text-primary" />
-                      <span>UI/UX</span>
+                      <span>Interaction Design</span>
                     </div>
                     <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
                       <BookOpen className="h-5 w-5 text-primary" />
-                      <span>Ed Tech</span>
+                      <span>Innovation & Tech Strategy</span>
                     </div>
                   </div>
                 </div>
@@ -504,6 +509,81 @@ export default function Index() {
           </div>
 
           <div className="space-y-8">
+            {/* UC San Diego MINDS Lab */}
+            <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] animate-slide-up group">
+              <CardContent className="p-8">
+                <div className="flex flex-col md:flex-row md:items-start justify-between mb-6">
+                                                          <div className="flex items-center space-x-4 mb-4 md:mb-0">
+                        <img src="/mindslab.png" alt="MINDS Lab Logo" className="h-10 w-10 object-contain group-hover:scale-110 transition-transform duration-300" />
+                      <div>
+                      <h3 className="text-2xl font-semibold">
+                        UX Researcher (Explainable AI)
+                      </h3>
+                      <p className="text-primary font-medium">
+                        UC San Diego MINDS Lab
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-2 text-muted-foreground">
+                    <Calendar className="h-4 w-4" />
+                    <span>March 2025 - Present</span>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-2">
+                    <Circle className="h-2 w-2 text-primary mt-1.5 flex-shrink-0 fill-primary" />
+                    <p className="text-muted-foreground leading-relaxed">
+                      Conducting UX research to improve explainability and
+                      fairness in AI systems, with a focus on novel interaction
+                      techniques for ML model understanding.
+                    </p>
+                  </div>
+                  <div className="space-y-3 text-sm text-muted-foreground">
+                    <div className="flex items-start space-x-2">
+                      <Circle className="h-2 w-2 text-primary mt-1.5 flex-shrink-0 fill-primary" />
+                      <span>
+                        Authored paper on explainable AI interfaces accepted at
+                        top-tier HCI conference
+                      </span>
+                    </div>
+                    <div className="flex items-start space-x-2">
+                      <Circle className="h-2 w-2 text-primary mt-1.5 flex-shrink-0 fill-primary" />
+                      <span>
+                        Developed interactive visualization tools for ML model
+                        exploration
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/20 text-primary border-primary/30"
+                  >
+                    Python
+                  </Badge>
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/20 text-primary border-primary/30"
+                  >
+                    Machine Learning
+                  </Badge>
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/20 text-primary border-primary/30"
+                  >
+                    UX Research
+                  </Badge>
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/20 text-primary border-primary/30"
+                  >
+                    Data Analysis
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* SkillTree */}
             <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] animate-slide-up group">
               <CardContent className="p-8">
@@ -525,21 +605,24 @@ export default function Index() {
                   </div>
                 </div>
                 <div className="space-y-4">
-                  <p className="text-muted-foreground leading-relaxed">
-                    Leading a 12-person cross-functional team to build
-                    SkillTree, a revolutionary workout app with real-time pose
-                    detection, funded by Blackstone LaunchPad.
-                  </p>
-                  <div className="grid md:grid-cols-2 gap-4 text-sm text-muted-foreground">
+                  <div className="flex items-start space-x-2">
+                    <Circle className="h-2 w-2 text-primary mt-1.5 flex-shrink-0 fill-primary" />
+                    <p className="text-muted-foreground leading-relaxed">
+                      Leading a 12-person cross-functional team to build
+                      SkillTree, a revolutionary workout app with real-time pose
+                      detection, funded by Blackstone LaunchPad.
+                    </p>
+                  </div>
+                  <div className="space-y-3 text-sm text-muted-foreground">
                     <div className="flex items-start space-x-2">
-                      <ChevronRight className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <Circle className="h-2 w-2 text-primary mt-1.5 flex-shrink-0 fill-primary" />
                       <span>
                         Architected full-stack app using React Native,
                         TypeScript, AWS Amplify, and DynamoDB
                       </span>
                     </div>
                     <div className="flex items-start space-x-2">
-                      <ChevronRight className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <Circle className="h-2 w-2 text-primary mt-1.5 flex-shrink-0 fill-primary" />
                       <span>
                         Facilitated 40+ user interviews driving 45% feature
                         improvement
@@ -576,47 +659,44 @@ export default function Index() {
               </CardContent>
             </Card>
 
-            {/* UC San Diego MINDS Lab */}
+            {/* NNN Smart Solutions */}
             <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] animate-slide-up group">
               <CardContent className="p-8">
                 <div className="flex flex-col md:flex-row md:items-start justify-between mb-6">
                   <div className="flex items-center space-x-4 mb-4 md:mb-0">
                     <div className="bg-primary/20 p-3 rounded-xl group-hover:scale-110 transition-transform duration-300">
-                      <Brain className="h-6 w-6 text-primary" />
+                      <Code className="h-6 w-6 text-primary" />
                     </div>
                     <div>
                       <h3 className="text-2xl font-semibold">
-                        UX Researcher (Explainable AI)
+                        Software Developer Intern
                       </h3>
-                      <p className="text-primary font-medium">
-                        UC San Diego MINDS Lab
-                      </p>
+                      <p className="text-primary font-medium">NNN Smart Solutions</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-2 text-muted-foreground">
                     <Calendar className="h-4 w-4" />
-                    <span>March 2025 - Present</span>
+                    <span>June 2022 - January 2025</span>
                   </div>
                 </div>
                 <div className="space-y-4">
-                  <p className="text-muted-foreground leading-relaxed">
-                    Conducting cutting-edge research in explainable AI,
-                    analyzing user interaction patterns to improve AI-driven
-                    recommendations and studying algorithmic fairness.
-                  </p>
-                  <div className="grid md:grid-cols-2 gap-4 text-sm text-muted-foreground">
+                  <div className="flex items-start space-x-2">
+                    <Circle className="h-2 w-2 text-primary mt-1.5 flex-shrink-0 fill-primary" />
+                    <p className="text-muted-foreground leading-relaxed">
+                      Contributed to web development and accessibility projects as a software engineering intern.
+                    </p>
+                  </div>
+                  <div className="space-y-3 text-sm text-muted-foreground">
                     <div className="flex items-start space-x-2">
-                      <ChevronRight className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <Circle className="h-2 w-2 text-primary mt-1.5 flex-shrink-0 fill-primary" />
                       <span>
-                        Analyzed interaction data from 100+ users to find
-                        behavioral patterns
+                        Designed the company website in Figma and built it with React, delivering a modern, responsive UX
                       </span>
                     </div>
                     <div className="flex items-start space-x-2">
-                      <ChevronRight className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <Circle className="h-2 w-2 text-primary mt-1.5 flex-shrink-0 fill-primary" />
                       <span>
-                        First-author paper accepted at FAccT on algorithmic
-                        fairness and trust
+                        Ensured website compliance with accessibility standards, optimizing usability for a diverse customer base
                       </span>
                     </div>
                   </div>
@@ -626,25 +706,25 @@ export default function Index() {
                     variant="secondary"
                     className="bg-primary/20 text-primary border-primary/30"
                   >
-                    Python
+                    React
                   </Badge>
                   <Badge
                     variant="secondary"
                     className="bg-primary/20 text-primary border-primary/30"
                   >
-                    Machine Learning
+                    Figma
                   </Badge>
                   <Badge
                     variant="secondary"
                     className="bg-primary/20 text-primary border-primary/30"
                   >
-                    UX Research
+                    Web Accessibility
                   </Badge>
                   <Badge
                     variant="secondary"
                     className="bg-primary/20 text-primary border-primary/30"
                   >
-                    Data Analysis
+                    UI/UX
                   </Badge>
                 </div>
               </CardContent>
@@ -673,29 +753,18 @@ export default function Index() {
                   </div>
                 </div>
                 <div className="space-y-4">
-                  <p className="text-muted-foreground leading-relaxed">
-                    Led a 7-person team in designing and building
-                    championship-winning 250lb combat robots, achieving
-                    international recognition and TV fame.
-                  </p>
-                  <div className="grid md:grid-cols-2 gap-4 text-sm text-muted-foreground">
+                  <div className="space-y-3 text-sm text-muted-foreground">
                     <div className="flex items-start space-x-2">
-                      <ChevronRight className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                      <span>2021 BattleBots Rookie of the Year</span>
+                      <Circle className="h-2 w-2 text-primary mt-1.5 flex-shrink-0 fill-primary" />
+                      <span>Led and supervised a 7-person team in the design, assembly, and maintenance of multiple 250lb combat robots</span>
                     </div>
                     <div className="flex items-start space-x-2">
-                      <ChevronRight className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                      <span>Ranked #2 globally in 2022</span>
+                      <Circle className="h-2 w-2 text-primary mt-1.5 flex-shrink-0 fill-primary" />
+                      <span>Raised over 40k through sponsorships, merchandise sales, and crowdfunding to support builds and travel logistics</span>
                     </div>
                     <div className="flex items-start space-x-2">
-                      <ChevronRight className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                      <span>
-                        Raised $40K+ through sponsorships and crowdfunding
-                      </span>
-                    </div>
-                    <div className="flex items-start space-x-2">
-                      <ChevronRight className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                      <span>Featured on nationally televised matches</span>
+                      <Circle className="h-2 w-2 text-primary mt-1.5 flex-shrink-0 fill-primary" />
+                      <span>2021 BattleBots Rookie of the Year and ranked #2 globally in 2022, with robots featured on nationally televised matches reaching millions of viewers per episode</span>
                     </div>
                   </div>
                 </div>
@@ -802,7 +871,7 @@ export default function Index() {
                   <div className="bg-primary/20 p-3 rounded-lg group-hover:animate-spin-slow">
                     <Smartphone className="h-6 w-6 text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold">Frameworks</h3>
+                  <h3 className="text-xl font-semibold">Libraries/Frameworks</h3>
                 </div>
                 <div className="space-y-4">
                   {[
@@ -849,7 +918,7 @@ export default function Index() {
                   <div className="bg-primary/20 p-3 rounded-lg group-hover:animate-spin-slow">
                     <Database className="h-6 w-6 text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold">Tools & Cloud</h3>
+                  <h3 className="text-xl font-semibold">Developer Tools</h3>
                 </div>
                 <div className="space-y-4">
                   {[
@@ -893,8 +962,8 @@ export default function Index() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-6 relative">
-        <div className="container mx-auto max-w-6xl">
+      <section id="projects" className="py-20 px-6 relative" ref={projectsRef}>
+        <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-green-400 bg-clip-text text-transparent">
               Featured Projects
@@ -904,9 +973,9 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 container mx-auto">
             {/* SkillTree App */}
-            <Card className="group overflow-hidden bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] animate-slide-up">
+            <Card className={`group overflow-hidden bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] ${firstProjectVisible ? 'animate-fade-in-sequential' : 'opacity-0'}`}>
               <CardContent className="p-0">
                 <div className="aspect-video bg-gradient-to-br from-primary/30 to-green-400/30 relative overflow-hidden">
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -974,7 +1043,7 @@ export default function Index() {
             </Card>
 
             {/* CUDA DCGAN Optimizer */}
-            <Card className="group overflow-hidden bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] animate-slide-up">
+            <Card className={`group overflow-hidden bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] ${secondProjectVisible ? 'animate-fade-in-sequential' : 'opacity-0'}`}>
               <CardContent className="p-0">
                 <div className="aspect-video bg-gradient-to-br from-purple-400/30 to-blue-500/30 relative overflow-hidden">
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -1035,6 +1104,275 @@ export default function Index() {
                       className="bg-primary/20 text-primary"
                     >
                       GPU Computing
+                    </Badge>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* BattleBots */}
+            <Card className={`group overflow-hidden bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] ${thirdProjectVisible ? 'animate-fade-in-sequential' : 'opacity-0'}`}>
+              <CardContent className="p-0">
+                <div className="aspect-video bg-gradient-to-br from-blue-400/30 to-purple-500/30 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="flex space-x-4">
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        className="animate-pulse-glow"
+                      >
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Demo
+                      </Button>
+                      <Button size="sm" variant="outline">
+                        <Github className="h-4 w-4 mr-2" />
+                        Code
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="p-8 h-full flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="w-20 h-20 bg-blue-500 rounded-xl mx-auto mb-4 flex items-center justify-center animate-float">
+                        <Bot className="h-10 w-10 text-white" />
+                      </div>
+                      <h4 className="text-2xl font-semibold text-foreground">
+                        BattleBots
+                      </h4>
+                      <p className="text-primary font-medium">Robotics</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <p className="text-muted-foreground mb-4">
+                    Led a 7-person team in designing, building, and competing
+                    with combat robots in the BattleBots competition.
+                    Achieved #2 global ranking in 2022.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      Mechanical Design
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      Team Leadership
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      C++
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      Robotics
+                    </Badge>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* MINDS Lab Research */}
+            <Card className={`group overflow-hidden bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] ${fourthProjectVisible ? 'animate-fade-in-sequential' : 'opacity-0'}`}>
+              <CardContent className="p-0">
+                <div className="aspect-video bg-gradient-to-br from-green-400/30 to-blue-400/30 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="flex space-x-4">
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        className="animate-pulse-glow"
+                      >
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Demo
+                      </Button>
+                      <Button size="sm" variant="outline">
+                        <Github className="h-4 w-4 mr-2" />
+                        Code
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="p-8 h-full flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="w-20 h-20 bg-green-500 rounded-xl mx-auto mb-4 flex items-center justify-center animate-float">
+                        <img src="/mindslab.png" alt="MINDS Lab Logo" className="h-14 w-14 object-contain" />
+                      </div>
+                      <h4 className="text-2xl font-semibold text-foreground">
+                        MINDS Lab Research
+                      </h4>
+                      <p className="text-primary font-medium">Explainable AI</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <p className="text-muted-foreground mb-4">
+                    Conducted UX research and developed interactive tools for
+                    ML model understanding at UC San Diego's MINDS Lab.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      UX Research
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      ML/AI
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      HCI
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      Research
+                    </Badge>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* VEX Robotics */}
+            <Card className={`group overflow-hidden bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] ${fifthProjectVisible ? 'animate-fade-in-sequential' : 'opacity-0'}`}>
+              <CardContent className="p-0">
+                <div className="aspect-video bg-gradient-to-br from-red-400/30 to-orange-400/30 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="flex space-x-4">
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        className="animate-pulse-glow"
+                      >
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Demo
+                      </Button>
+                      <Button size="sm" variant="outline">
+                        <Github className="h-4 w-4 mr-2" />
+                        Code
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="p-8 h-full flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="w-20 h-20 bg-red-500 rounded-xl mx-auto mb-4 flex items-center justify-center animate-float">
+                        <Bot className="h-10 w-10 text-white" />
+                      </div>
+                      <h4 className="text-2xl font-semibold text-foreground">
+                        VEX Robotics
+                      </h4>
+                      <p className="text-primary font-medium">Competition Robotics</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <p className="text-muted-foreground mb-4">
+                    Led team to California VEX State Championship victory in 2020, 
+                    designing and programming autonomous robots for competitive challenges.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      Robotics
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      C++
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      CAD
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      Competition
+                    </Badge>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Personal Portfolio */}
+            <Card className={`group overflow-hidden bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] ${sixthProjectVisible ? 'animate-fade-in-sequential' : 'opacity-0'}`}>
+              <CardContent className="p-0">
+                <div className="aspect-video bg-gradient-to-br from-indigo-400/30 to-pink-400/30 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="flex space-x-4">
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        className="animate-pulse-glow"
+                      >
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Live Site
+                      </Button>
+                      <Button size="sm" variant="outline">
+                        <Github className="h-4 w-4 mr-2" />
+                        Code
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="p-8 h-full flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="w-20 h-20 bg-indigo-500 rounded-xl mx-auto mb-4 flex items-center justify-center animate-float">
+                        <Code className="h-10 w-10 text-white" />
+                      </div>
+                      <h4 className="text-2xl font-semibold text-foreground">
+                        Personal Portfolio
+                      </h4>
+                      <p className="text-primary font-medium">Web Development</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <p className="text-muted-foreground mb-4">
+                    Modern, responsive portfolio website built with React, TypeScript, 
+                    and Tailwind CSS featuring animated UI components and custom designs.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      React
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      TypeScript
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      Tailwind CSS
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
+                      UI/UX
                     </Badge>
                   </div>
                 </div>
