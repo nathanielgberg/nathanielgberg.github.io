@@ -1388,10 +1388,10 @@ export default function Index() {
                   <div>
                     <p className="font-medium">Email</p>
                     <a
-                      href="mailto:ngreenberg@ucsd.edu"
+                      href="mailto:nathanielgreenberg5@gmail.com"
                       className="text-primary hover:underline transition-colors"
                     >
-                      ngreenberg@ucsd.edu
+                      nathanielgreenberg5@gmail.com
                     </a>
                   </div>
                 </div>
@@ -1413,29 +1413,23 @@ export default function Index() {
 
                 <div className="flex items-center space-x-4 group">
                   <div className="bg-primary/20 p-3 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                    <MapPin className="h-5 w-5 text-primary" />
+                    <Linkedin className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-medium">Location</p>
-                    <p className="text-muted-foreground">San Diego, CA</p>
+                    <p className="font-medium">LinkedIn</p>
+                    <a
+                      href="https://linkedin.com/in/nathanielgreenberg"
+                      className="text-primary hover:underline transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      linkedin.com/in/nathanielgreenberg
+                    </a>
                   </div>
                 </div>
               </div>
 
-              <div className="flex space-x-4 pt-6">
-                <a
-                  href="https://github.com/nathanielgberg"
-                  className="bg-primary/20 p-3 rounded-lg text-primary hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110"
-                >
-                  <Github className="h-5 w-5" />
-                </a>
-                <a
-                  href="https://linkedin.com/in/nathanielgreenberg"
-                  className="bg-primary/20 p-3 rounded-lg text-primary hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110"
-                >
-                  <Linkedin className="h-5 w-5" />
-                </a>
-              </div>
+              {/* Remove the bottom row of GitHub and LinkedIn icons in the contact section */}
             </div>
 
             <Card className="bg-card/50 backdrop-blur-sm border-primary/20 animate-fade-in">
@@ -1485,23 +1479,9 @@ export default function Index() {
       {/* Footer */}
       <footer className="py-8 px-6 border-t border-border/20 bg-background/30 backdrop-blur-sm">
         <div className="container mx-auto max-w-6xl">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-muted-foreground mb-4 md:mb-0">
-              © 2024 Nathaniel Greenberg. All rights reserved.
-            </div>
-            <div className="flex space-x-6">
-              <a
-                href="#"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="#"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                Terms of Service
-              </a>
+          <div className="flex justify-center items-center">
+            <div className="text-muted-foreground text-center">
+              © 2025 Nathaniel Greenberg. All rights reserved.
             </div>
           </div>
         </div>
