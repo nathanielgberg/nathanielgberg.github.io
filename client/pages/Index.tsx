@@ -446,7 +446,7 @@ export default function Index() {
                     <img 
                       src="/ucsd logo.png" 
                       alt="University of California, San Diego logo" 
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-contain rounded-lg"
                     />
                   </div>
 
@@ -589,7 +589,7 @@ export default function Index() {
               <CardContent className="p-8">
                 <div className="flex flex-col md:flex-row md:items-start justify-between mb-6">
                   <div className="flex items-center space-x-4 mb-4 md:mb-0">
-                    <img src="/adaptive-icon.png" alt="SkillTree Logo" className="h-12 w-12 object-contain group-hover:scale-110 transition-transform duration-300 rounded-lg" />
+                    <img src="/skilltree2.0.PNG" alt="SkillTree Logo" className="h-10 w-10 object-contain group-hover:scale-100 transition-transform duration-300 rounded-lg" />
                     <div>
                       <h3 className="text-2xl font-semibold">
                         Co-Founder | CTO | Lead Engineer
@@ -971,36 +971,34 @@ export default function Index() {
             {/* SkillTree App */}
             <Card className={`group overflow-hidden bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] ${firstProjectVisible ? 'animate-fade-in-sequential' : 'opacity-0'}`}>
               <CardContent className="p-0">
-                <div className="aspect-video bg-gradient-to-br from-primary/30 to-green-400/30 relative overflow-hidden">
+                <div className="aspect-video relative overflow-hidden">
+                  <img src="/adaptive-icon.png" alt="SkillTree Logo" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="flex space-x-4">
                       <Button
                         size="sm"
                         variant="secondary"
                         className="animate-pulse-glow"
+                        asChild
                       >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        Live Demo
+                        <a href="http://apple.com/app-store/" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Download
+                        </a>
                       </Button>
-                      <Button size="sm" variant="outline">
-                        <Github className="h-4 w-4 mr-2" />
-                        Code
+                      <Button size="sm" variant="outline" asChild>
+                        <a href="https://www.skilltreefitness.com/" target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4 mr-2" />
+                          Website
+                        </a>
                       </Button>
-                    </div>
-                  </div>
-                  <div className="p-8 h-full flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center animate-float">
-                        <img src="/adaptive-icon.png" alt="SkillTree Logo" className="h-16 w-16 object-contain rounded-lg" />
-                      </div>
-                      <h4 className="text-2xl font-semibold text-foreground">
-                        SkillTree
-                      </h4>
-                      <p className="text-primary font-medium">Workout App</p>
                     </div>
                   </div>
                 </div>
                 <div className="p-6">
+                  <h4 className="text-2xl font-semibold text-foreground mb-4 text-center">
+                    SkillTree
+                  </h4>
                   <p className="text-muted-foreground mb-4">
                     Revolutionary workout app with real-time pose detection
                     using React Native, TypeScript, and AWS. Led 12-person team
@@ -1039,40 +1037,36 @@ export default function Index() {
             {/* CUDA DCGAN Optimizer */}
             <Card className={`group overflow-hidden bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] ${secondProjectVisible ? 'animate-fade-in-sequential' : 'opacity-0'}`}>
               <CardContent className="p-0">
-                <div className="aspect-video bg-gradient-to-br from-purple-400/30 to-blue-500/30 relative overflow-hidden">
+                <div className="aspect-video relative overflow-hidden flex items-center justify-center">
+                  <img src="/newdcgan.PNG" alt="CUDA DCGAN Optimizer" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="flex space-x-4">
                       <Button
                         size="sm"
                         variant="secondary"
                         className="animate-pulse-glow"
+                        asChild
                       >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        Demo
+                        <a href="https://github.com/nathanielgberg/dcgan-cuda-optimizer/blob/main/Optimizing%20Deep%20Convolutional%20Generative%20Adversarial%20Networks%20Using%20CUDA.pdf" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Slides
+                        </a>
                       </Button>
-                      <Button size="sm" variant="outline">
-                        <Github className="h-4 w-4 mr-2" />
-                        Code
+                      <Button size="sm" variant="outline" asChild>
+                        <a href="https://github.com/nathanielgberg/dcgan-cuda-optimizer" target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4 mr-2" />
+                          Code
+                        </a>
                       </Button>
-                    </div>
-                  </div>
-                  <div className="p-8 h-full flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-20 h-20 bg-purple-500 rounded-xl mx-auto mb-4 flex items-center justify-center animate-float">
-                        <Cpu className="h-10 w-10 text-white" />
-                      </div>
-                      <h4 className="text-2xl font-semibold text-foreground">
-                        CUDA DCGAN Optimizer
-                      </h4>
-                      <p className="text-primary font-medium">GPU Computing</p>
                     </div>
                   </div>
                 </div>
                 <div className="p-6">
+                  <h4 className="text-2xl font-semibold text-foreground mb-4 text-center">
+                    CUDA DCGAN Optimizer
+                  </h4>
                   <p className="text-muted-foreground mb-4">
-                    Developed low-level CUDA kernels for a Python-based DCGAN
-                    pipeline, achieving 34x faster training through memory
-                    coalescing and shared memory techniques.
+                    A project exploring how NVIDIA CUDA acceleration can significantly improve the training performance of Deep Convolutional Generative Adversarial Networks (DCGANs). Built as part of an ECE 277 course, it integrates CUDA into key operations—like convolutions and matrix multiplications—then benchmarks CPU-only versus GPU-optimized training to show dramatic speedups without sacrificing the quality of generated images.
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <Badge
@@ -1091,13 +1085,13 @@ export default function Index() {
                       variant="secondary"
                       className="bg-primary/20 text-primary"
                     >
-                      PyTorch
+                      GPU Computing
                     </Badge>
                     <Badge
                       variant="secondary"
                       className="bg-primary/20 text-primary"
                     >
-                      GPU Computing
+                      PyTorch
                     </Badge>
                   </div>
                 </div>
@@ -1107,65 +1101,61 @@ export default function Index() {
             {/* BattleBots */}
             <Card className={`group overflow-hidden bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] ${thirdProjectVisible ? 'animate-fade-in-sequential' : 'opacity-0'}`}>
               <CardContent className="p-0">
-                <div className="aspect-video bg-gradient-to-br from-blue-400/30 to-purple-500/30 relative overflow-hidden">
+                <div className="aspect-video relative overflow-hidden flex items-center justify-center">
+                  <img src="/sharktank.PNG" alt="Shark Tank" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="flex space-x-4">
                       <Button
                         size="sm"
                         variant="secondary"
                         className="animate-pulse-glow"
+                        asChild
                       >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        Demo
+                        <a href="https://docs.google.com/presentation/d/1PQDi8DjCNR1NgA-RA1-hRaGnez7DkwL1d8c7X96bzJg/edit?slide=id.g31ab0d0ad1d_0_17" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Slides
+                        </a>
                       </Button>
-                      <Button size="sm" variant="outline">
-                        <Github className="h-4 w-4 mr-2" />
-                        Code
+                      <Button size="sm" variant="outline" asChild>
+                        <a href="https://github.com/nathanielgberg/Shark-Tank-Analysis" target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4 mr-2" />
+                          Code
+                        </a>
                       </Button>
-                    </div>
-                  </div>
-                  <div className="p-8 h-full flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center animate-float">
-                        <img src="/bblogo.png" alt="BattleBots Logo" className="h-16 w-16 object-contain rounded-lg" />
-                      </div>
-                      <h4 className="text-2xl font-semibold text-foreground">
-                        BattleBots
-                      </h4>
-                      <p className="text-primary font-medium">Robotics</p>
                     </div>
                   </div>
                 </div>
                 <div className="p-6">
+                  <h4 className="text-2xl font-semibold text-foreground mb-4 text-center">
+                    Analysis of Shark Tank Investments
+                  </h4>
                   <p className="text-muted-foreground mb-4">
-                    Led a 7-person team in designing, building, and competing
-                    with combat robots in the BattleBots competition.
-                    Achieved #2 global ranking in 2022.
+                    This project analyzes startup pitches from all seasons of Shark Tank by examining founder profiles by location, gender, and industry to uncover investment patterns. It delivers interactive visualizations (pie charts, flow charts, bar charts, and heat maps) and applies logistic regression to identify the key factors that predict a company’s success.
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <Badge
                       variant="secondary"
                       className="bg-primary/20 text-primary"
                     >
-                      Mechanical Design
+                      Python
                     </Badge>
                     <Badge
                       variant="secondary"
                       className="bg-primary/20 text-primary"
                     >
-                      Team Leadership
+                      Pandas
                     </Badge>
                     <Badge
                       variant="secondary"
                       className="bg-primary/20 text-primary"
                     >
-                      C++
+                      Plotly
                     </Badge>
                     <Badge
                       variant="secondary"
                       className="bg-primary/20 text-primary"
                     >
-                      Robotics
+                      Scikit-learn
                     </Badge>
                   </div>
                 </div>
@@ -1175,64 +1165,61 @@ export default function Index() {
             {/* MINDS Lab Research */}
             <Card className={`group overflow-hidden bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] ${fourthProjectVisible ? 'animate-fade-in-sequential' : 'opacity-0'}`}>
               <CardContent className="p-0">
-                <div className="aspect-video bg-gradient-to-br from-green-400/30 to-blue-400/30 relative overflow-hidden">
+                <div className="aspect-video relative overflow-hidden flex items-center justify-center">
+                  <img src="/battery.png" alt="Battery PINN Illustration" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="flex space-x-4">
                       <Button
                         size="sm"
                         variant="secondary"
                         className="animate-pulse-glow"
+                        asChild
                       >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        Demo
+                        <a href="https://github.com/nathanielgberg/battery-capacity-fade-prediction/blob/main/docs/paper.pdf" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Report
+                        </a>
                       </Button>
-                      <Button size="sm" variant="outline">
-                        <Github className="h-4 w-4 mr-2" />
-                        Code
+                      <Button size="sm" variant="outline" asChild>
+                        <a href="https://github.com/nathanielgberg/battery-capacity-fade-prediction" target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4 mr-2" />
+                          Code
+                        </a>
                       </Button>
-                    </div>
-                  </div>
-                  <div className="p-8 h-full flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-20 h-20 bg-green-500 rounded-xl mx-auto mb-4 flex items-center justify-center animate-float">
-                        <img src="/mindslab.png" alt="MINDS Lab Logo" className="h-16 w-16 object-contain rounded-lg" />
-                      </div>
-                      <h4 className="text-2xl font-semibold text-foreground">
-                        MINDS Lab Research
-                      </h4>
-                      <p className="text-primary font-medium">Explainable AI</p>
                     </div>
                   </div>
                 </div>
                 <div className="p-6">
+                  <h4 className="text-2xl font-semibold text-foreground mb-4 text-center">
+                    Physics-Informed Battery Capacity Fade Prediction
+                  </h4>
                   <p className="text-muted-foreground mb-4">
-                    Conducted UX research and developed interactive tools for
-                    ML model understanding at UC San Diego's MINDS Lab.
+                    A project that predicts lithium-ion battery capacity fade over time using a two-stage Physics-Informed Neural Network (PINN) on NASA's PCoE dataset. By embedding a degradation ODE into the loss function, it halves test RMSE compared to data-only models and produces paper-ready results in a single reproducible run.
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <Badge
                       variant="secondary"
                       className="bg-primary/20 text-primary"
                     >
-                      UX Research
+                      Python
                     </Badge>
                     <Badge
                       variant="secondary"
                       className="bg-primary/20 text-primary"
                     >
-                      ML/AI
+                      PyTorch
                     </Badge>
                     <Badge
                       variant="secondary"
                       className="bg-primary/20 text-primary"
                     >
-                      HCI
+                      Physics-Informed Neural Networks
                     </Badge>
                     <Badge
                       variant="secondary"
                       className="bg-primary/20 text-primary"
                     >
-                      Research
+                      Data Analysis
                     </Badge>
                   </div>
                 </div>
@@ -1242,7 +1229,8 @@ export default function Index() {
             {/* VEX Robotics */}
             <Card className={`group overflow-hidden bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] ${fifthProjectVisible ? 'animate-fade-in-sequential' : 'opacity-0'}`}>
               <CardContent className="p-0">
-                <div className="aspect-video bg-gradient-to-br from-red-400/30 to-orange-400/30 relative overflow-hidden">
+                <div className="aspect-video relative overflow-hidden bg-gradient-to-br from-red-400/30 to-orange-400/30 flex items-center justify-center">
+                  <Bot className="w-24 h-24 text-white" />
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="flex space-x-4">
                       <Button
@@ -1259,19 +1247,11 @@ export default function Index() {
                       </Button>
                     </div>
                   </div>
-                  <div className="p-8 h-full flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-20 h-20 bg-red-500 rounded-xl mx-auto mb-4 flex items-center justify-center animate-float">
-                        <Bot className="h-10 w-10 text-white" />
-                      </div>
-                      <h4 className="text-2xl font-semibold text-foreground">
-                        VEX Robotics
-                      </h4>
-                      <p className="text-primary font-medium">Competition Robotics</p>
-                    </div>
-                  </div>
                 </div>
                 <div className="p-6">
+                  <h4 className="text-2xl font-semibold text-foreground mb-4 text-center">
+                    VEX Robotics
+                  </h4>
                   <p className="text-muted-foreground mb-4">
                     Led team to California VEX State Championship victory in 2020, 
                     designing and programming autonomous robots for competitive challenges.
@@ -1309,64 +1289,61 @@ export default function Index() {
             {/* Personal Portfolio */}
             <Card className={`group overflow-hidden bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] ${sixthProjectVisible ? 'animate-fade-in-sequential' : 'opacity-0'}`}>
               <CardContent className="p-0">
-                <div className="aspect-video bg-gradient-to-br from-indigo-400/30 to-pink-400/30 relative overflow-hidden">
+                <div className="aspect-video relative overflow-hidden flex items-center justify-center">
+                  <img src="/8ball.PNG" alt="Magic 8-Ball" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="flex space-x-4">
                       <Button
                         size="sm"
                         variant="secondary"
                         className="animate-pulse-glow"
+                        asChild
                       >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        Live Site
+                        <a href="https://the132debuggers.github.io/cse110-sp23-the132Debuggers/source/" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Live Site
+                        </a>
                       </Button>
-                      <Button size="sm" variant="outline">
-                        <Github className="h-4 w-4 mr-2" />
-                        Code
+                      <Button size="sm" variant="outline" asChild>
+                        <a href="https://github.com/nathanielgberg/magic-8ball-simulator" target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4 mr-2" />
+                          Code
+                        </a>
                       </Button>
-                    </div>
-                  </div>
-                  <div className="p-8 h-full flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-20 h-20 bg-indigo-500 rounded-xl mx-auto mb-4 flex items-center justify-center animate-float">
-                        <Code className="h-10 w-10 text-white" />
-                      </div>
-                      <h4 className="text-2xl font-semibold text-foreground">
-                        Personal Portfolio
-                      </h4>
-                      <p className="text-primary font-medium">Web Development</p>
                     </div>
                   </div>
                 </div>
                 <div className="p-6">
+                  <h4 className="text-2xl font-semibold text-foreground mb-4 text-center">
+                    Magic 8-Ball Simulator
+                  </h4>
                   <p className="text-muted-foreground mb-4">
-                    Modern, responsive portfolio website built with React, TypeScript, 
-                    and Tailwind CSS featuring animated UI components and custom designs.
+                    A Harry Potter themed project that simulates a Magic 8-Ball. Shake it for answers and get randomly generated responses just like the classic toy.
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <Badge
                       variant="secondary"
                       className="bg-primary/20 text-primary"
                     >
-                      React
+                      JavaScript
                     </Badge>
                     <Badge
                       variant="secondary"
                       className="bg-primary/20 text-primary"
                     >
-                      TypeScript
+                      HTML/CSS
                     </Badge>
                     <Badge
                       variant="secondary"
                       className="bg-primary/20 text-primary"
                     >
-                      Tailwind CSS
+                      OpenAI API
                     </Badge>
                     <Badge
                       variant="secondary"
                       className="bg-primary/20 text-primary"
                     >
-                      UI/UX
+                      Jest & Puppeteer
                     </Badge>
                   </div>
                 </div>
