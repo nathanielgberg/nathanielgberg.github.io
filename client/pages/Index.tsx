@@ -391,7 +391,7 @@ export default function Index() {
                     <img 
                       src="/ucsd logo.png" 
                       alt="University of California, San Diego logo" 
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-contain rounded-lg"
                     />
                   </div>
 
@@ -514,7 +514,7 @@ export default function Index() {
               <CardContent className="p-8">
                 <div className="flex flex-col md:flex-row md:items-start justify-between mb-6">
                                                           <div className="flex items-center space-x-4 mb-4 md:mb-0">
-                        <img src="/mindslab.png" alt="MINDS Lab Logo" className="h-10 w-10 object-contain group-hover:scale-110 transition-transform duration-300" />
+                        <img src="/mindslab.png" alt="MINDS Lab Logo" className="h-12 w-12 object-contain group-hover:scale-110 transition-transform duration-300 rounded-lg" />
                       <div>
                       <h3 className="text-2xl font-semibold">
                         UX Researcher (Explainable AI)
@@ -589,9 +589,7 @@ export default function Index() {
               <CardContent className="p-8">
                 <div className="flex flex-col md:flex-row md:items-start justify-between mb-6">
                   <div className="flex items-center space-x-4 mb-4 md:mb-0">
-                    <div className="bg-primary/20 p-3 rounded-xl group-hover:scale-110 transition-transform duration-300">
-                      <Rocket className="h-6 w-6 text-primary" />
-                    </div>
+                    <img src="/adaptive-icon.png" alt="SkillTree Logo" className="h-12 w-12 object-contain group-hover:scale-110 transition-transform duration-300 rounded-lg" />
                     <div>
                       <h3 className="text-2xl font-semibold">
                         Co-Founder | CTO | Lead Engineer
@@ -664,9 +662,7 @@ export default function Index() {
               <CardContent className="p-8">
                 <div className="flex flex-col md:flex-row md:items-start justify-between mb-6">
                   <div className="flex items-center space-x-4 mb-4 md:mb-0">
-                    <div className="bg-primary/20 p-3 rounded-xl group-hover:scale-110 transition-transform duration-300">
-                      <Code className="h-6 w-6 text-primary" />
-                    </div>
+                    <img src="/nnnlogo.png" alt="NNN Smart Solutions Logo" className="h-12 w-12 object-contain group-hover:scale-110 transition-transform duration-300 rounded-lg" />
                     <div>
                       <h3 className="text-2xl font-semibold">
                         Software Developer Intern
@@ -735,9 +731,7 @@ export default function Index() {
               <CardContent className="p-8">
                 <div className="flex flex-col md:flex-row md:items-start justify-between mb-6">
                   <div className="flex items-center space-x-4 mb-4 md:mb-0">
-                    <div className="bg-primary/20 p-3 rounded-xl group-hover:scale-110 transition-transform duration-300">
-                      <Bot className="h-6 w-6 text-primary" />
-                    </div>
+                    <img src="/bblogo.png" alt="BattleBots Logo" className="h-12 w-12 object-contain group-hover:scale-110 transition-transform duration-300 rounded-lg" />
                     <div>
                       <h3 className="text-2xl font-semibold">
                         Assembly and Design Lead
@@ -996,8 +990,8 @@ export default function Index() {
                   </div>
                   <div className="p-8 h-full flex items-center justify-center">
                     <div className="text-center">
-                      <div className="w-20 h-20 bg-primary rounded-xl mx-auto mb-4 flex items-center justify-center animate-float">
-                        <Smartphone className="h-10 w-10 text-white" />
+                      <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center animate-float">
+                        <img src="/adaptive-icon.png" alt="SkillTree Logo" className="h-16 w-16 object-contain rounded-lg" />
                       </div>
                       <h4 className="text-2xl font-semibold text-foreground">
                         SkillTree
@@ -1132,8 +1126,8 @@ export default function Index() {
                   </div>
                   <div className="p-8 h-full flex items-center justify-center">
                     <div className="text-center">
-                      <div className="w-20 h-20 bg-blue-500 rounded-xl mx-auto mb-4 flex items-center justify-center animate-float">
-                        <Bot className="h-10 w-10 text-white" />
+                      <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center animate-float">
+                        <img src="/bblogo.png" alt="BattleBots Logo" className="h-16 w-16 object-contain rounded-lg" />
                       </div>
                       <h4 className="text-2xl font-semibold text-foreground">
                         BattleBots
@@ -1201,7 +1195,7 @@ export default function Index() {
                   <div className="p-8 h-full flex items-center justify-center">
                     <div className="text-center">
                       <div className="w-20 h-20 bg-green-500 rounded-xl mx-auto mb-4 flex items-center justify-center animate-float">
-                        <img src="/mindslab.png" alt="MINDS Lab Logo" className="h-14 w-14 object-contain" />
+                        <img src="/mindslab.png" alt="MINDS Lab Logo" className="h-16 w-16 object-contain rounded-lg" />
                       </div>
                       <h4 className="text-2xl font-semibold text-foreground">
                         MINDS Lab Research
