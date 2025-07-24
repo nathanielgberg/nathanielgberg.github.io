@@ -223,7 +223,7 @@ export default function Index() {
 
               <div className="flex space-x-6">
                 <a
-                  href="mailto:ngreenberg@ucsd.edu"
+                  href="mailto:nathanielgreenberg5@gmail.com"
                   className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
                 >
                   <Mail className="h-6 w-6" />
@@ -1130,7 +1130,7 @@ export default function Index() {
                     Analysis of Shark Tank Investments
                   </h4>
                   <p className="text-muted-foreground mb-4">
-                    This project analyzes startup pitches from all seasons of Shark Tank by examining founder profiles by location, gender, and industry to uncover investment patterns. It delivers interactive visualizations (pie charts, flow charts, bar charts, and heat maps) and applies logistic regression to identify the key factors that predict a company’s success.
+                    This project analyzes startup pitches from all seasons of Shark Tank by examining founder profiles by location, gender, and industry to uncover investment patterns. It delivers interactive visualizations (pie charts, flow charts, bar charts, and heat maps) and applies logistic regression to identify the key factors that predict a company's success.
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <Badge
@@ -1479,7 +1479,41 @@ export default function Index() {
       {/* Footer */}
       <footer className="py-8 px-6 border-t border-border/20 bg-background/30 backdrop-blur-sm">
         <div className="container mx-auto max-w-6xl">
-          <div className="flex justify-center items-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start text-center">
+            <div className="pt-0 flex flex-col items-center">
+              <div className="text-2xl font-bold text-foreground mb-2">Nathaniel Greenberg</div>
+              <div className="text-muted-foreground mb-4 mt-3">Aspiring Builder of Impactful Products</div>
+              <div className="flex space-x-4 mt-2 justify-center">
+                <a href="https://github.com/nathanielgberg" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                  <Github className="h-6 w-6" />
+                </a>
+                <a href="https://linkedin.com/in/nathanielgreenberg" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                  <Linkedin className="h-6 w-6" />
+                </a>
+                <a href="mailto:nathanielgreenberg5@gmail.com" className="hover:text-primary transition-colors">
+                  <Mail className="h-6 w-6" />
+                </a>
+              </div>
+            </div>
+            <div className="flex flex-col space-y-2 items-center">
+              <div className="text-2xl font-bold text-foreground mb-2">Navigation</div>
+              <a href="#" onClick={e => { e.preventDefault(); scrollToSection('home'); }} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">Home</a>
+              <a href="#" onClick={e => { e.preventDefault(); scrollToSection('about'); }} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">About</a>
+              <a href="#" onClick={e => { e.preventDefault(); scrollToSection('experience'); }} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">Experience</a>
+              <a href="#" onClick={e => { e.preventDefault(); scrollToSection('skills'); }} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">Skills</a>
+              <a href="#" onClick={e => { e.preventDefault(); scrollToSection('projects'); }} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">Projects</a>
+              <a href="#" onClick={e => { e.preventDefault(); scrollToSection('contact'); }} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">Contact</a>
+            </div>
+            <div className="flex flex-col space-y-2 items-center">
+              <div className="text-2xl font-bold text-foreground mb-2">Let's Connect</div>
+              <p className="text-muted-foreground mb-10">Feel free to reach out if you're interested in collaborating or have any questions.</p>
+              <Button className="w-full max-w-[200px] mx-auto" size="lg" onClick={() => scrollToSection('contact')}>
+                <Zap className="mr-2 h-5 w-5" />
+                Contact Me
+              </Button>
+            </div>
+          </div>
+          <div className="flex justify-center items-center mt-8">
             <div className="text-muted-foreground text-center">
               © 2025 Nathaniel Greenberg. All rights reserved.
             </div>
