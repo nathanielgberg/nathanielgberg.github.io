@@ -387,11 +387,12 @@ export default function Index() {
             <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.01] animate-slide-up h-[600px] aspect-square w-[600px]">
               <CardContent className="p-12 h-full">
                 <div className="flex flex-col items-center justify-center text-center space-y-6 h-full">
-                  <div className="w-32 h-32 flex items-center justify-center">
+                  <div className="w-32 h-32 flex items-center justify-center relative">
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400 via-green-300 to-yellow-300 blur-2xl opacity-70 animate-glow-pulse"></div>
                     <img 
                       src="/ucsd logo.png" 
                       alt="University of California, San Diego logo" 
-                      className="w-full h-full object-contain rounded-lg"
+                      className="w-full h-full object-contain rounded-lg relative z-10"
                     />
                   </div>
 
@@ -442,11 +443,12 @@ export default function Index() {
             <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.01] animate-slide-up h-[600px] aspect-square w-[600px]">
               <CardContent className="p-12 h-full">
                 <div className="flex flex-col items-center justify-center text-center space-y-6 h-full">
-                  <div className="w-32 h-32 flex items-center justify-center">
+                  <div className="w-32 h-32 flex items-center justify-center relative">
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400 via-green-300 to-yellow-300 blur-2xl opacity-70 animate-glow-pulse"></div>
                     <img 
                       src="/ucsd logo.png" 
                       alt="University of California, San Diego logo" 
-                      className="w-full h-full object-contain rounded-lg"
+                      className="w-full h-full object-contain rounded-lg relative z-10"
                     />
                   </div>
 
@@ -466,27 +468,27 @@ export default function Index() {
                   <div className="flex flex-wrap justify-center gap-2">
                     <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
                       <BookOpen className="h-5 w-5 text-primary" />
-                      <span>Adv ML</span>
+                      <span>Software Engineering</span>
                     </div>
                     <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
                       <BookOpen className="h-5 w-5 text-primary" />
-                      <span>Deep Learning</span>
+                      <span>Adv Data Structures</span>
                     </div>
                     <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
                       <BookOpen className="h-5 w-5 text-primary" />
-                      <span>Computer Vision</span>
+                      <span>Computer Architecture</span>
                     </div>
                     <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
                       <BookOpen className="h-5 w-5 text-primary" />
-                      <span>Explainable AI</span>
+                      <span>Database Systems</span>
                     </div>
                     <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
                       <BookOpen className="h-5 w-5 text-primary" />
-                      <span>Research</span>
+                      <span>Interaction Design</span>
                     </div>
                     <div className="flex items-center space-x-2 bg-card/50 px-3 py-2 rounded-md border border-primary/20">
                       <BookOpen className="h-5 w-5 text-primary" />
-                      <span>Algo Fairness</span>
+                      <span>Innovation & Tech Strategy</span>
                     </div>
                   </div>
                 </div>
@@ -1507,8 +1509,7 @@ export default function Index() {
             <div className="flex flex-col space-y-2 items-center">
               <div className="text-2xl font-bold text-foreground mb-2">Let's Connect</div>
               <p className="text-muted-foreground mb-10">Feel free to reach out if you're interested in collaborating or have any questions.</p>
-              <Button className="w-full max-w-[200px] mx-auto" size="lg" onClick={() => scrollToSection('contact')}>
-                <Zap className="mr-2 h-5 w-5" />
+              <Button className="w-full max-w-[200px] mx-auto bg-background border border-white text-white rounded-md hover:bg-background/80 hover:border-white transition-colors" size="lg" onClick={() => scrollToSection('contact')}>
                 Contact Me
               </Button>
             </div>
