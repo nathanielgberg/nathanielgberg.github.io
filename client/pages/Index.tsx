@@ -314,23 +314,11 @@ export default function Index() {
                           </div>
                           <h3 className="text-3xl font-bold">Quick Facts</h3>
                         </div>
-                        <div className="space-y-6">
-                          <div className="flex items-center space-x-3">
-                            <GraduationCap className="h-6 w-6 text-primary" />
-                            <span className="text-lg">Computer Engineering @ UCSD</span>
-                          </div>
-                          <div className="flex items-center space-x-3">
-                            <Code className="h-6 w-6 text-primary" />
-                            <span className="text-lg">Software Developer</span>
-                          </div>
-                          <div className="flex items-center space-x-3">
-                            <MapPin className="h-6 w-6 text-primary" />
-                            <span className="text-lg">San Diego, California</span>
-                          </div>
-                          <div className="flex items-center space-x-3">
-                            <Briefcase className="h-6 w-6 text-primary" />
-                            <span className="text-lg">Aspiring TPM/PM</span>
-                          </div>
+                        <div className="space-y-6 text-center">
+                          <div className="text-lg">Computer Engineering @ UCSD</div>
+                          <div className="text-lg">Software Developer</div>
+                          <div className="text-lg">San Diego, California</div>
+                          <div className="text-lg">Aspiring TPM/PM</div>
                         </div>
                       </CardContent>
                     </Card>
@@ -973,8 +961,8 @@ export default function Index() {
             {/* SkillTree App */}
             <Card className={`group overflow-hidden bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] ${firstProjectVisible ? 'animate-fade-in-sequential' : 'opacity-0'}`}>
               <CardContent className="p-0">
-                <div className="aspect-video relative overflow-hidden">
-                  <img src="/adaptive-icon.png" alt="SkillTree Logo" className="w-full h-full object-cover" />
+                <div className="aspect-[3/2] relative overflow-hidden mx-auto">
+                  <img src="/adaptive-icon.png" alt="SkillTree Logo" className="w-full h-full object-cover mx-auto" />
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="flex space-x-4">
                       <Button
@@ -1167,8 +1155,8 @@ export default function Index() {
             {/* MINDS Lab Research */}
             <Card className={`group overflow-hidden bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] ${fourthProjectVisible ? 'animate-fade-in-sequential' : 'opacity-0'}`}>
               <CardContent className="p-0">
-                <div className="aspect-video relative overflow-hidden flex items-center justify-center">
-                  <img src="/battery.png" alt="Battery PINN Illustration" className="w-full h-full object-cover" />
+                <div className="aspect-[3/2] relative overflow-hidden flex items-center justify-center">
+                  <img src="/battery3.0.png" alt="Battery PINN Illustration" className="w-full h-full object-contain" />
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="flex space-x-4">
                       <Button
@@ -1231,8 +1219,8 @@ export default function Index() {
             {/* VEX Robotics */}
             <Card className={`group overflow-hidden bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-[1.02] ${fifthProjectVisible ? 'animate-fade-in-sequential' : 'opacity-0'}`}>
               <CardContent className="p-0">
-                <div className="aspect-video relative overflow-hidden bg-gradient-to-br from-red-400/30 to-orange-400/30 flex items-center justify-center">
-                  <Bot className="w-24 h-24 text-white" />
+                <div className="aspect-video relative overflow-hidden">
+                  <img src="/vex logo.PNG" alt="VEX Robotics Logo" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="flex space-x-4">
                       <Button
